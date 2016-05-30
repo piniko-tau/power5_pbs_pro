@@ -1,0 +1,14 @@
+
+geos
+
+Execution
+
+acl_users : einat,harnik,mtanya,orlipast,pavelkunin,veredsil,yair2,zipi
+
+
+max.walltime = 2400:00:00
+
+nodes: 12,13,14,15
+
+cpu count : 32
+

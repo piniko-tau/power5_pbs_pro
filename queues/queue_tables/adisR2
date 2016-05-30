@@ -1,0 +1,15 @@
+
+adisR2
+
+Route
+
+acl_users : Open
+
+
+
+max.walltime = 2400:00:00
+route_destinations = adisE
+
+nodes: 
+
+cpu count : 

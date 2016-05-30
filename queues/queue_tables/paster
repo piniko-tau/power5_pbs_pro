@@ -1,0 +1,14 @@
+
+paster
+
+Execution
+
+acl_users : benneriah,hermanh,orifried,paster,talibk,tallustig,teodorv,toledo,zivmoreno
+
+
+max.walltime = 2400:00:00
+
+nodes: 159,160,161,162
+
+cpu count : 64
+

@@ -1,0 +1,14 @@
+#
+# Create queues and set their attributes.
+#
+#
+# Create and define queue adisE
+#
+create queue adisE
+set queue adisE queue_type = Execution
+set queue adisE Priority = 800
+set queue adisE max_queuable = 5000
+set queue adisE resources_max.walltime = 2400:00:00
+set queue adisE from_route_only = True
+set queue adisE enabled = True
+set queue adisE started = True

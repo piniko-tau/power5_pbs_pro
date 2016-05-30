@@ -1,0 +1,14 @@
+
+adis
+
+Execution
+
+acl_users : adinjermys,elilevy,gallumbroso,guyling,maozgelbart,morgeva,okushnir,piniko,sternadi,taliakustin,talzinger
+
+
+max.walltime = 2400:00:00
+
+nodes: 163,170,171,172,173
+
+cpu count : 120
+

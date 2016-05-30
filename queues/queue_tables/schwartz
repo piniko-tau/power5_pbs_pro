@@ -1,0 +1,14 @@
+
+schwartz
+
+Execution
+
+acl_users : avishaye,michail,nasnas,rotmanzi,schwart,yoavspec
+
+
+max.walltime = 2400:00:00
+
+nodes: 20,21,22,23,181
+
+cpu count : 56
+

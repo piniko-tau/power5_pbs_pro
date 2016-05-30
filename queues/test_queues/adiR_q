@@ -1,0 +1,14 @@
+#
+# Create and define queue adisR
+#
+create queue adisR
+set queue adisR queue_type = Route
+set queue adisR acl_user_enable = True
+set queue adisR acl_users = piniko
+set queue adisR acl_users += dvory
+set queue adisR resources_max.walltime = 2400:00:00
+set queue adisR route_destinations = tamir-short
+set queue adisR route_destinations += nano4
+set queue adisR route_destinations += AdisR2
+set queue adisR enabled = True
+set queue adisR started = True

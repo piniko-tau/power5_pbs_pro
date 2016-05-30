@@ -1,0 +1,14 @@
+
+shokefmem
+
+Execution
+
+acl_users : antinaghosh,danny,eialteom,gregory7,mayayev,nimrods6,romango1,shokef,sternadi
+
+
+max.walltime = 2400:00:00
+
+nodes: 158
+
+cpu count : 12
+

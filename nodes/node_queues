@@ -1,0 +1,48 @@
+
+adis
+adis parallel
+amir-medium amir-express hugemem ibnew ibsw2
+amir-medium amir-express ibnew
+amir-medium amir-express ibnew ibsw2
+amir-medium amir-express ibnew ibsw2 parallel
+amir-medium amir-express ibold
+amir-medium amir-express ibold parallel
+amir-medium amir-express inf bigmem ibnew ibsw2
+amir-medium amir-express inf ibnew ibsw2
+amir-medium amir-express inf parallel ibnew ibsw2
+amir-medium amir-express short ibold
+barkana
+dieguez
+dieguez parallel
+geos
+geos short hugemem inf
+geos short inf
+gophna
+hugemem inf parallel
+hugemem nano1 nano2 nano3 nano4 nano5
+hugemem parallel
+hugemem schwartz
+hugemem shokef shokefr mem32
+inf
+nano1 nano2 nano3 nano4 nano5
+nano1 nano2 nano3 nano4 nano5 bigmem
+nano1 nano4 bigmem
+paster
+phys hugemem
+phys inf
+phys parallel hugemem
+phys short
+schwartz
+schwartz parallel
+shokefmem
+shokef mem128
+shokef mem64
+shokef shokefr mem32
+short
+short barkana
+short hugemem
+short hugemem inf parallel
+short inf parallel
+short shokef shokefr mem32
+sunny parallel
+tamir-short tamir-long tamirs

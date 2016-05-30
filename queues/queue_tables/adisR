@@ -1,0 +1,14 @@
+
+adisR
+
+Route
+
+acl_users : dvory,piniko
+
+
+max.walltime = 2400:00:00
+route_destinations = adisR2
+
+nodes: 
+
+cpu count : 

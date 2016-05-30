@@ -1,0 +1,3 @@
+set queue shokefr acl_host_enable = False
+set queue tamirs1 acl_host_enable = False
+set queue tamirs acl_host_enable = False

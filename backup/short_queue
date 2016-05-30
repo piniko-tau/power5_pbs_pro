@@ -1,0 +1,9 @@
+set queue short resources_max.cput = 24:00:00
+set queue short resources_max.mem = 1800mb
+set queue short resources_max.ncpus = 1
+set queue short resources_max.pmem = 1800mb
+set queue short resources_max.pvmem = 3300mb
+set queue short resources_max.vmem = 3300mb
+set queue short resources_max.walltime = 60:00:00
+set queue short resources_default.cput = 24:00:00
+set queue short resources_default.ncpus = 1

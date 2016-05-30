@@ -1,0 +1,17 @@
+
+nano2
+
+Execution
+
+acl_users : eialteom,gregory7,mayayev,mordecai,nimrods6,romango1,shokef
+
+
+max.walltime = 2400:00:00
+default.mem = 200mb
+default.ncpus = 1
+default.pmem = 200mb
+
+nodes: 81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103
+
+cpu count : 368
+

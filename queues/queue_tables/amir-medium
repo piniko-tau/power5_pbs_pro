@@ -1,0 +1,14 @@
+
+amir-medium
+
+Execution
+
+acl_users : aflow,alonheve,alonkukl,amirnatan,antinaghosh,danielasc,dieguez,dmitryb,dodikd59,dorgabay,einat,eyahel,guylandm,iddoamit,idoguy,kerenraz,lohad,mmurat,natalykuritz,nickb,ppoullet,rachelga,shaniardazi,srivasd1,yhonata1,zschornm,zuzovski
+
+
+max.walltime = 2400:00:00
+
+nodes: 26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,75,76,77,78,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157
+
+cpu count : 656
+

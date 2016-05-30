@@ -1,0 +1,14 @@
+
+sunny
+
+Execution
+
+acl_users : asafbe1
+
+
+max.walltime = 2400:00:00
+
+nodes: 59,60
+
+cpu count : 24
+
