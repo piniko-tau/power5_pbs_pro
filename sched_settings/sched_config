@@ -29,7 +29,7 @@
 #
 #	PRIME OPTION
 
-round_robin: False	all
+round_robin: false	all
 
 
 #
@@ -40,8 +40,8 @@ round_robin: False	all
 #
 #	PRIME OPTION
 
-by_queue: True		prime
-by_queue: True		non_prime
+by_queue: true		prime
+by_queue: true		non_prime
 
 
 #
@@ -237,7 +237,7 @@ provision_policy: "aggressive_provision"
 #	PRIME OPTION
 #
 
-sort_queues:	true	ALL
+sort_queues:	false	ALL
 
 #### SMP JOB OPTIONS: 
 
@@ -263,7 +263,7 @@ sort_queues:	true	ALL
 #
 #	NO PRIME OPTION
 
-resources: "ncpus, mem, arch, host, vnode, netwins, aoe ,pmem , vmem , pvmem , cput"
+resources: "ncpus, mem, arch, host, vnode, netwins, aoe ,pmem , vmem , pvmem , cput, Qlist"
 
 #
 # load_balancing 
@@ -287,7 +287,7 @@ load_balancing: false	ALL
 #
 #	PRIME OPTION
 
-smp_cluster_dist: load
+smp_cluster_dist: lowest_load
 
 #### FAIRSHARE OPTIONS
 
@@ -327,7 +327,7 @@ unknown_shares: 100
 #	NOTE: ONLY one resource can be collected.
 #
 #	NO PRIME OPTION
-fairshare_usage_res: cput
+fairshare_usage_res: ncpus*walltime
 
 #
 # fairshare_entity
@@ -390,7 +390,7 @@ preemptive_sched: true	ALL
 #	NOTE: This options works with preempt_prio
 #
 #	NO PRIME OPTION
-preempt_queue_prio:	150
+preempt_queue_prio:	100
 
 #
 # preempt_prio
@@ -449,7 +449,7 @@ preempt_queue_prio:	150
 #	NO PRIME OPTION
 
 #preempt_prio: "express_queue, normal_jobs, fairshare"
-preempt_prio: "normal_jobs,queue_softlimits,fairshare"
+preempt_prio: "express_queue,normal_jobs,queue_softlimits,fairshare"
 #preempt_prio: "normal_jobs,queue_softlimits"
 #
 
@@ -483,7 +483,7 @@ preempt_prio: "normal_jobs,queue_softlimits,fairshare"
 #	attempt to suspend
 #
 #preempt_order: "SCR"
-preempt_order: "SR"
+preempt_order: "S"
 
 # preempt_sort
 #
@@ -501,6 +501,8 @@ preempt_order: "SR"
 #
 preempt_sort: min_time_since_start
 
+
+preempt_targets: weak
 
 #### PEER SCHEDULING OPTIONS 
 
