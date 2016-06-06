@@ -16,15 +16,6 @@ set resource Qlist flag = h
 # Create queues and set their attributes.
 #
 #
-# Create and define queue adisR2
-#
-create queue adisR2
-set queue adisR2 queue_type = Route
-set queue adisR2 resources_max.walltime = 2400:00:00
-set queue adisR2 route_destinations = adisE
-set queue adisR2 enabled = True
-set queue adisR2 started = True
-#
 # Create and define queue inf
 #
 create queue inf
@@ -338,26 +329,6 @@ set queue adis resources_max.walltime = 2400:00:00
 set queue adis enabled = True
 set queue adis started = True
 #
-# Create and define queue hugemem
-#
-create queue hugemem
-set queue hugemem queue_type = Execution
-set queue hugemem resources_max.cput = 72:00:00
-set queue hugemem resources_max.mem = 15gb
-set queue hugemem resources_max.ncpus = 1
-set queue hugemem resources_max.pmem = 10gb
-set queue hugemem resources_max.pvmem = 50gb
-set queue hugemem resources_max.vmem = 50gb
-set queue hugemem resources_max.walltime = 90:00:00
-set queue hugemem resources_default.cput = 72:00:00
-set queue hugemem resources_default.mem = 500mb
-set queue hugemem resources_default.ncpus = 1
-set queue hugemem resources_default.pmem = 20000mb
-set queue hugemem resources_default.pvmem = 20000mb
-set queue hugemem max_run = [u:PBS_GENERIC=60]
-set queue hugemem enabled = True
-set queue hugemem started = True
-#
 # Create and define queue parallel
 #
 create queue parallel
@@ -393,21 +364,6 @@ set queue bigmem resources_default.vmem = 1100mb
 set queue bigmem max_run = [u:PBS_GENERIC=12]
 set queue bigmem enabled = True
 set queue bigmem started = True
-#
-# Create and define queue schwartz
-#
-create queue schwartz
-set queue schwartz queue_type = Execution
-set queue schwartz acl_user_enable = True
-set queue schwartz acl_users = avishaye
-set queue schwartz acl_users += michail
-set queue schwartz acl_users += nasnas
-set queue schwartz acl_users += rotmanzi
-set queue schwartz acl_users += schwart
-set queue schwartz acl_users += yoavspec
-set queue schwartz resources_max.walltime = 2400:00:00
-set queue schwartz enabled = True
-set queue schwartz started = True
 #
 # Create and define queue shokef
 #
@@ -500,6 +456,26 @@ set queue tamir-short resources_default.pvmem = 200mb
 set queue tamir-short resources_default.vmem = 200mb
 set queue tamir-short enabled = True
 set queue tamir-short started = True
+#
+# Create and define queue hugemem
+#
+create queue hugemem
+set queue hugemem queue_type = Execution
+set queue hugemem resources_max.cput = 72:00:00
+set queue hugemem resources_max.mem = 15gb
+set queue hugemem resources_max.ncpus = 1
+set queue hugemem resources_max.pmem = 10gb
+set queue hugemem resources_max.pvmem = 50gb
+set queue hugemem resources_max.vmem = 50gb
+set queue hugemem resources_max.walltime = 90:00:00
+set queue hugemem resources_default.cput = 72:00:00
+set queue hugemem resources_default.mem = 500mb
+set queue hugemem resources_default.ncpus = 1
+set queue hugemem resources_default.pmem = 20000mb
+set queue hugemem resources_default.pvmem = 20000mb
+set queue hugemem max_run = [u:PBS_GENERIC=60]
+set queue hugemem enabled = True
+set queue hugemem started = True
 #
 # Create and define queue short
 #
@@ -649,55 +625,40 @@ set queue barkana resources_max.walltime = 2400:00:00
 set queue barkana enabled = True
 set queue barkana started = True
 #
+# Create and define queue schwartz
+#
+create queue schwartz
+set queue schwartz queue_type = Execution
+set queue schwartz acl_user_enable = True
+set queue schwartz acl_users = avishaye
+set queue schwartz acl_users += michail
+set queue schwartz acl_users += nasnas
+set queue schwartz acl_users += rotmanzi
+set queue schwartz acl_users += schwart
+set queue schwartz acl_users += yoavspec
+set queue schwartz resources_max.walltime = 2400:00:00
+set queue schwartz enabled = True
+set queue schwartz started = True
+#
 # Create and define queue azure1
 #
 create queue azure1
 set queue azure1 queue_type = Execution
-set queue azure1 default_chunk.Qlist = adisE
 set queue azure1 max_run = [o:PBS_ALL=2]
 set queue azure1 max_run_soft = [p:adis_guest_job_project=0]
 set queue azure1 max_run_soft += [p:general_guest_job_project=0]
 set queue azure1 enabled = True
 set queue azure1 started = True
 #
-# Create and define queue adisE2
+# Create and define queue power_queue
 #
-create queue adisE2
-set queue adisE2 queue_type = Execution
-set queue adisE2 Priority = 200
-set queue adisE2 resources_max.walltime = 2400:00:00
-set queue adisE2 resources_default.mem = 200mb
-set queue adisE2 default_chunk.Qlist = adisE2
-set queue adisE2 max_run_soft = [p:adis_guest_job_project=0]
-set queue adisE2 max_run_soft += [p:general_guest_job_project=0]
-set queue adisE2 enabled = True
-set queue adisE2 started = True
-#
-# Create and define queue adisR
-#
-create queue adisR
-set queue adisR queue_type = Route
-set queue adisR acl_user_enable = True
-set queue adisR acl_users = dvory
-set queue adisR acl_users += piniko
-set queue adisR resources_max.walltime = 2400:00:00
-set queue adisR route_destinations = adisE
-set queue adisR route_destinations += adisE2
-set queue adisR enabled = True
-set queue adisR started = True
-#
-# Create and define queue adisE
-#
-create queue adisE
-set queue adisE queue_type = Execution
-set queue adisE max_queued = [p:adis_guest_job_project=2]
-set queue adisE from_route_only = True
-set queue adisE resources_max.walltime = 2400:00:00
-set queue adisE resources_default.mem = 200mb
-set queue adisE default_chunk.Qlist = adisE
-set queue adisE max_run_soft = [p:adis_guest_job_project=999]
-set queue adisE enabled = True
-set queue adisE started = True
+create queue power_queue
+set queue power_queue queue_type = Execution
+set queue power_queue from_route_only = True
+set queue power_queue default_chunk.Qlist = power_queue
+set queue power_queue max_run_soft = [p:general_guest_job_project=0]
+set queue power_queue enabled = True
+set queue power_queue started = True
 #
 # Set server attributes.
 #
@@ -711,10 +672,11 @@ set server scheduler_iteration = 60
 set server resv_enable = True
 set server node_fail_requeue = 310
 set server max_array_size = 10000
+set server rpp_retry = 600
 set server pbs_license_info = 6200@localhost
 set server pbs_license_min = 1
 set server pbs_license_max = 2147483647
 set server pbs_license_linger_time = 31536000
-set server license_count = "Avail_Global:1997 Avail_Local:0 Used:3 High_Use:3 Avail_Sockets:0 Unused_Sockets:0"
+set server license_count = "Avail_Global:1852 Avail_Local:120 Used:28 High_Use:148 Avail_Sockets:0 Unused_Sockets:0"
 set server eligible_time_enable = True
 set server max_concurrent_provision = 5
