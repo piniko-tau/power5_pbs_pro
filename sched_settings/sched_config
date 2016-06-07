@@ -40,8 +40,9 @@ round_robin: false	all
 #
 #	PRIME OPTION
 
-by_queue: true		prime
-by_queue: true		non_prime
+#by_queue: true		prime
+#by_queue: true		non_prime
+by_queue: false      all
 
 
 #
@@ -449,7 +450,7 @@ preempt_queue_prio:	100
 #	NO PRIME OPTION
 
 #preempt_prio: "express_queue, normal_jobs, fairshare"
-preempt_prio: "express_queue,normal_jobs,queue_softlimits,fairshare"
+preempt_prio: "express_queue,queue_softlimits,fairshare,normal_jobs"
 #preempt_prio: "normal_jobs,queue_softlimits"
 #
 
