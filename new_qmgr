@@ -36,6 +36,44 @@ set queue inf max_run = [u:PBS_GENERIC=80]
 set queue inf enabled = True
 set queue inf started = True
 #
+# Create and define queue nano4
+#
+create queue nano4
+set queue nano4 queue_type = Execution
+set queue nano4 acl_user_enable = True
+set queue nano4 acl_users = alexa9
+set queue nano4 acl_users += coheneya1
+set queue nano4 acl_users += dalon
+set queue nano4 acl_users += danakrep
+set queue nano4 acl_users += danny
+set queue nano4 acl_users += einat
+set queue nano4 acl_users += giladshaham
+set queue nano4 acl_users += guzeliez
+set queue nano4 acl_users += iddoweiner
+set queue nano4 acl_users += itaileve
+set queue nano4 acl_users += kirilll1
+set queue nano4 acl_users += n5
+set queue nano4 acl_users += odedhod
+set queue nano4 acl_users += omershaked2
+set queue nano4 acl_users += oriahmio
+set queue nano4 acl_users += oscarfajardo
+set queue nano4 acl_users += piniko
+set queue nano4 acl_users += renanaco
+set queue nano4 acl_users += shimshi
+set queue nano4 acl_users += tamarzel
+set queue nano4 acl_users += tamirtestgrp
+set queue nano4 acl_users += zoharzaf
+set queue nano4 acl_users += zurhadas
+set queue nano4 acl_users += zurhadas2
+set queue nano4 resources_max.walltime = 2400:00:00
+set queue nano4 resources_default.mem = 200mb
+set queue nano4 resources_default.ncpus = 1
+set queue nano4 resources_default.pmem = 200mb
+set queue nano4 resources_default.pvmem = 200mb
+set queue nano4 resources_default.vmem = 200mb
+set queue nano4 enabled = True
+set queue nano4 started = True
+#
 # Create and define queue dieguez
 #
 create queue dieguez
@@ -126,6 +164,8 @@ set queue tamirs1 acl_users += renanaco
 set queue tamirs1 acl_users += shimshi
 set queue tamirs1 acl_users += tamirtestgrp
 set queue tamirs1 acl_users += zoharzaf
+set queue tamirs1 acl_users += zurhadas
+set queue tamirs1 acl_users += zurhadas2
 set queue tamirs1 resources_max.walltime = 2400:00:00
 set queue tamirs1 route_destinations = tamir-short
 set queue tamirs1 route_destinations += nano4
@@ -155,6 +195,8 @@ set queue tamirs2 acl_users += renanaco
 set queue tamirs2 acl_users += shimshi
 set queue tamirs2 acl_users += tamirtestgrp
 set queue tamirs2 acl_users += zoharzaf
+set queue tamirs2 acl_users += zurhadas
+set queue tamirs2 acl_users += zurhadas2
 set queue tamirs2 resources_max.walltime = 2400:00:00
 set queue tamirs2 route_destinations = tamir-short
 set queue tamirs2 enabled = True
@@ -274,61 +316,6 @@ set queue nano2 resources_default.pmem = 200mb
 set queue nano2 enabled = True
 set queue nano2 started = True
 #
-# Create and define queue nano4
-#
-create queue nano4
-set queue nano4 queue_type = Execution
-set queue nano4 acl_user_enable = True
-set queue nano4 acl_users = alexa9
-set queue nano4 acl_users += coheneya1
-set queue nano4 acl_users += dalon
-set queue nano4 acl_users += danakrep
-set queue nano4 acl_users += danny
-set queue nano4 acl_users += einat
-set queue nano4 acl_users += giladshaham
-set queue nano4 acl_users += guzeliez
-set queue nano4 acl_users += iddoweiner
-set queue nano4 acl_users += itaileve
-set queue nano4 acl_users += kirilll1
-set queue nano4 acl_users += n5
-set queue nano4 acl_users += odedhod
-set queue nano4 acl_users += omershaked2
-set queue nano4 acl_users += oriahmio
-set queue nano4 acl_users += oscarfajardo
-set queue nano4 acl_users += piniko
-set queue nano4 acl_users += renanaco
-set queue nano4 acl_users += shimshi
-set queue nano4 acl_users += tamarzel
-set queue nano4 acl_users += tamirtestgrp
-set queue nano4 acl_users += zoharzaf
-set queue nano4 resources_max.walltime = 2400:00:00
-set queue nano4 resources_default.mem = 200mb
-set queue nano4 resources_default.ncpus = 1
-set queue nano4 resources_default.pmem = 200mb
-set queue nano4 resources_default.pvmem = 200mb
-set queue nano4 resources_default.vmem = 200mb
-set queue nano4 enabled = True
-set queue nano4 started = True
-#
-# Create and define queue adis
-#
-create queue adis
-set queue adis queue_type = Execution
-set queue adis acl_users = adinjermys
-set queue adis acl_users += elilevy
-set queue adis acl_users += gallumbroso
-set queue adis acl_users += guyling
-set queue adis acl_users += maozgelbart
-set queue adis acl_users += morgeva
-set queue adis acl_users += okushnir
-set queue adis acl_users += piniko
-set queue adis acl_users += sternadi
-set queue adis acl_users += taliakustin
-set queue adis acl_users += talzinger
-set queue adis resources_max.walltime = 2400:00:00
-set queue adis enabled = True
-set queue adis started = True
-#
 # Create and define queue parallel
 #
 create queue parallel
@@ -364,118 +351,6 @@ set queue bigmem resources_default.vmem = 1100mb
 set queue bigmem max_run = [u:PBS_GENERIC=12]
 set queue bigmem enabled = True
 set queue bigmem started = True
-#
-# Create and define queue shokef
-#
-create queue shokef
-set queue shokef queue_type = Execution
-set queue shokef acl_user_enable = True
-set queue shokef acl_users = antinaghosh
-set queue shokef acl_users += danny
-set queue shokef acl_users += eialteom
-set queue shokef acl_users += einat
-set queue shokef acl_users += gregory7
-set queue shokef acl_users += mayayev
-set queue shokef acl_users += nimrods6
-set queue shokef acl_users += romango1
-set queue shokef acl_users += shokef
-set queue shokef resources_max.walltime = 2400:00:00
-set queue shokef enabled = True
-set queue shokef started = True
-#
-# Create and define queue amir-express
-#
-create queue amir-express
-set queue amir-express queue_type = Execution
-set queue amir-express acl_user_enable = True
-set queue amir-express acl_users = aflow
-set queue amir-express acl_users += alonheve
-set queue amir-express acl_users += alonkukl
-set queue amir-express acl_users += amirnatan
-set queue amir-express acl_users += antinaghosh
-set queue amir-express acl_users += danielasc
-set queue amir-express acl_users += danny
-set queue amir-express acl_users += dieguez
-set queue amir-express acl_users += dmitryb
-set queue amir-express acl_users += dodikd59
-set queue amir-express acl_users += dorgabay
-set queue amir-express acl_users += einat
-set queue amir-express acl_users += eyahel
-set queue amir-express acl_users += guylandm
-set queue amir-express acl_users += iddoamit
-set queue amir-express acl_users += idoguy
-set queue amir-express acl_users += kerenraz
-set queue amir-express acl_users += lohad
-set queue amir-express acl_users += michail
-set queue amir-express acl_users += mmurat
-set queue amir-express acl_users += natalykuritz
-set queue amir-express acl_users += nickb
-set queue amir-express acl_users += ppoullet
-set queue amir-express acl_users += rachelga
-set queue amir-express acl_users += shaniardazi
-set queue amir-express acl_users += srivasd1
-set queue amir-express acl_users += yhonata1
-set queue amir-express acl_users += zschornm
-set queue amir-express acl_users += zuzovski
-set queue amir-express resources_max.walltime = 2400:00:00
-set queue amir-express enabled = True
-set queue amir-express started = True
-#
-# Create and define queue tamir-short
-#
-create queue tamir-short
-set queue tamir-short queue_type = Execution
-set queue tamir-short acl_user_enable = True
-set queue tamir-short acl_users = alexa9
-set queue tamir-short acl_users += coheneya1
-set queue tamir-short acl_users += dalon
-set queue tamir-short acl_users += danny
-set queue tamir-short acl_users += einat
-set queue tamir-short acl_users += giladshaham
-set queue tamir-short acl_users += guzeliez
-set queue tamir-short acl_users += iddoweiner
-set queue tamir-short acl_users += kirilll1
-set queue tamir-short acl_users += mayagalili
-set queue tamir-short acl_users += n5
-set queue tamir-short acl_users += omershaked2
-set queue tamir-short acl_users += oriahmio
-set queue tamir-short acl_users += piniko
-set queue tamir-short acl_users += renanaco
-set queue tamir-short acl_users += shimshi
-set queue tamir-short acl_users += tamirtestgrp
-set queue tamir-short acl_users += zoharzaf
-set queue tamir-short from_route_only = True
-set queue tamir-short resources_max.cput = 05:00:00
-set queue tamir-short resources_max.ncpus = 1
-set queue tamir-short resources_max.walltime = 2400:00:00
-set queue tamir-short resources_default.cput = 01:00:00
-set queue tamir-short resources_default.mem = 100mb
-set queue tamir-short resources_default.ncpus = 1
-set queue tamir-short resources_default.pmem = 100mb
-set queue tamir-short resources_default.pvmem = 200mb
-set queue tamir-short resources_default.vmem = 200mb
-set queue tamir-short enabled = True
-set queue tamir-short started = True
-#
-# Create and define queue hugemem
-#
-create queue hugemem
-set queue hugemem queue_type = Execution
-set queue hugemem resources_max.cput = 72:00:00
-set queue hugemem resources_max.mem = 15gb
-set queue hugemem resources_max.ncpus = 1
-set queue hugemem resources_max.pmem = 10gb
-set queue hugemem resources_max.pvmem = 50gb
-set queue hugemem resources_max.vmem = 50gb
-set queue hugemem resources_max.walltime = 90:00:00
-set queue hugemem resources_default.cput = 72:00:00
-set queue hugemem resources_default.mem = 500mb
-set queue hugemem resources_default.ncpus = 1
-set queue hugemem resources_default.pmem = 20000mb
-set queue hugemem resources_default.pvmem = 20000mb
-set queue hugemem max_run = [u:PBS_GENERIC=60]
-set queue hugemem enabled = True
-set queue hugemem started = True
 #
 # Create and define queue short
 #
@@ -517,6 +392,8 @@ set queue tamirs acl_users += renanaco
 set queue tamirs acl_users += shimshi
 set queue tamirs acl_users += tamirtestgrp
 set queue tamirs acl_users += zoharzaf
+set queue tamirs acl_users += zurhadas
+set queue tamirs acl_users += zurhadas2
 set queue tamirs resources_max.walltime = 2400:00:00
 set queue tamirs route_destinations = tamir-short
 set queue tamirs route_destinations += nano4
@@ -640,6 +517,142 @@ set queue schwartz resources_max.walltime = 2400:00:00
 set queue schwartz enabled = True
 set queue schwartz started = True
 #
+# Create and define queue shokef
+#
+create queue shokef
+set queue shokef queue_type = Execution
+set queue shokef acl_user_enable = True
+set queue shokef acl_users = antinaghosh
+set queue shokef acl_users += danny
+set queue shokef acl_users += eialteom
+set queue shokef acl_users += einat
+set queue shokef acl_users += gregory7
+set queue shokef acl_users += mayayev
+set queue shokef acl_users += nimrods6
+set queue shokef acl_users += romango1
+set queue shokef acl_users += shokef
+set queue shokef resources_max.walltime = 2400:00:00
+set queue shokef enabled = True
+set queue shokef started = True
+#
+# Create and define queue amir-express
+#
+create queue amir-express
+set queue amir-express queue_type = Execution
+set queue amir-express acl_user_enable = True
+set queue amir-express acl_users = aflow
+set queue amir-express acl_users += alonheve
+set queue amir-express acl_users += alonkukl
+set queue amir-express acl_users += amirnatan
+set queue amir-express acl_users += antinaghosh
+set queue amir-express acl_users += danielasc
+set queue amir-express acl_users += danny
+set queue amir-express acl_users += dieguez
+set queue amir-express acl_users += dmitryb
+set queue amir-express acl_users += dodikd59
+set queue amir-express acl_users += dorgabay
+set queue amir-express acl_users += einat
+set queue amir-express acl_users += eyahel
+set queue amir-express acl_users += guylandm
+set queue amir-express acl_users += iddoamit
+set queue amir-express acl_users += idoguy
+set queue amir-express acl_users += kerenraz
+set queue amir-express acl_users += lohad
+set queue amir-express acl_users += michail
+set queue amir-express acl_users += mmurat
+set queue amir-express acl_users += natalykuritz
+set queue amir-express acl_users += nickb
+set queue amir-express acl_users += ppoullet
+set queue amir-express acl_users += rachelga
+set queue amir-express acl_users += shaniardazi
+set queue amir-express acl_users += srivasd1
+set queue amir-express acl_users += yhonata1
+set queue amir-express acl_users += zschornm
+set queue amir-express acl_users += zuzovski
+set queue amir-express resources_max.walltime = 2400:00:00
+set queue amir-express enabled = True
+set queue amir-express started = True
+#
+# Create and define queue tamir-short
+#
+create queue tamir-short
+set queue tamir-short queue_type = Execution
+set queue tamir-short acl_user_enable = True
+set queue tamir-short acl_users = alexa9
+set queue tamir-short acl_users += coheneya1
+set queue tamir-short acl_users += dalon
+set queue tamir-short acl_users += danny
+set queue tamir-short acl_users += einat
+set queue tamir-short acl_users += giladshaham
+set queue tamir-short acl_users += guzeliez
+set queue tamir-short acl_users += iddoweiner
+set queue tamir-short acl_users += kirilll1
+set queue tamir-short acl_users += mayagalili
+set queue tamir-short acl_users += n5
+set queue tamir-short acl_users += omershaked2
+set queue tamir-short acl_users += oriahmio
+set queue tamir-short acl_users += piniko
+set queue tamir-short acl_users += renanaco
+set queue tamir-short acl_users += shimshi
+set queue tamir-short acl_users += tamirtestgrp
+set queue tamir-short acl_users += zoharzaf
+set queue tamir-short acl_users += zurhadas
+set queue tamir-short acl_users += zurhadas2
+set queue tamir-short from_route_only = True
+set queue tamir-short resources_max.cput = 05:00:00
+set queue tamir-short resources_max.ncpus = 1
+set queue tamir-short resources_max.walltime = 2400:00:00
+set queue tamir-short resources_default.cput = 01:00:00
+set queue tamir-short resources_default.mem = 100mb
+set queue tamir-short resources_default.ncpus = 1
+set queue tamir-short resources_default.pmem = 100mb
+set queue tamir-short resources_default.pvmem = 200mb
+set queue tamir-short resources_default.vmem = 200mb
+set queue tamir-short enabled = True
+set queue tamir-short started = True
+#
+# Create and define queue adis
+#
+create queue adis
+set queue adis queue_type = Execution
+set queue adis Priority = 200
+set queue adis acl_user_enable = True
+set queue adis acl_users = adinjermys
+set queue adis acl_users += elilevy
+set queue adis acl_users += gallumbroso
+set queue adis acl_users += guyling
+set queue adis acl_users += maozgelbart
+set queue adis acl_users += morgeva
+set queue adis acl_users += okushnir
+set queue adis acl_users += piniko
+set queue adis acl_users += sternadi
+set queue adis acl_users += taliakustin
+set queue adis acl_users += talzinger
+set queue adis resources_max.walltime = 2400:00:00
+set queue adis default_chunk.Qlist = adis
+set queue adis enabled = True
+set queue adis started = True
+#
+# Create and define queue hugemem
+#
+create queue hugemem
+set queue hugemem queue_type = Execution
+set queue hugemem resources_max.cput = 72:00:00
+set queue hugemem resources_max.mem = 15gb
+set queue hugemem resources_max.ncpus = 1
+set queue hugemem resources_max.pmem = 10gb
+set queue hugemem resources_max.pvmem = 50gb
+set queue hugemem resources_max.vmem = 50gb
+set queue hugemem resources_max.walltime = 90:00:00
+set queue hugemem resources_default.cput = 72:00:00
+set queue hugemem resources_default.mem = 500mb
+set queue hugemem resources_default.ncpus = 1
+set queue hugemem resources_default.pmem = 20000mb
+set queue hugemem resources_default.pvmem = 20000mb
+set queue hugemem max_run = [u:PBS_GENERIC=60]
+set queue hugemem enabled = True
+set queue hugemem started = True
+#
 # Create and define queue azure1
 #
 create queue azure1
@@ -660,6 +673,63 @@ set queue power_queue max_run_soft = [p:general_guest_job_project=0]
 set queue power_queue enabled = True
 set queue power_queue started = True
 #
+# Create and define queue adis_in
+#
+create queue adis_in
+set queue adis_in queue_type = Route
+set queue adis_in acl_user_enable = True
+set queue adis_in acl_users = adinjermys
+set queue adis_in acl_users += elilevy
+set queue adis_in acl_users += gallumbroso
+set queue adis_in acl_users += guyling
+set queue adis_in acl_users += maozgelbart
+set queue adis_in acl_users += morgeva
+set queue adis_in acl_users += okushnir
+set queue adis_in acl_users += piniko
+set queue adis_in acl_users += sternadi
+set queue adis_in acl_users += taliakustin
+set queue adis_in acl_users += talzinger
+set queue adis_in resources_max.walltime = 2400:00:00
+set queue adis_in route_destinations = adis_0q
+set queue adis_in route_destinations += power_queue_0q
+set queue adis_in route_destinations += adis
+set queue adis_in enabled = True
+set queue adis_in started = True
+#
+# Create and define queue power_queue_0q
+#
+create queue power_queue_0q
+set queue power_queue_0q queue_type = Execution
+set queue power_queue_0q max_queued_res.ncpus = [o:PBS_ALL=192]
+set queue power_queue_0q from_route_only = True
+set queue power_queue_0q default_chunk.Qlist = power_queue
+set queue power_queue_0q max_run_soft = [p:general_guest_job_project=0]
+set queue power_queue_0q enabled = True
+set queue power_queue_0q started = True
+#
+# Create and define queue adis_0q
+#
+create queue adis_0q
+set queue adis_0q queue_type = Execution
+set queue adis_0q Priority = 200
+set queue adis_0q max_queued_res.ncpus = [o:PBS_ALL=168]
+set queue adis_0q acl_users = adinjermys
+set queue adis_0q acl_users += elilevy
+set queue adis_0q acl_users += gallumbroso
+set queue adis_0q acl_users += guyling
+set queue adis_0q acl_users += maozgelbart
+set queue adis_0q acl_users += morgeva
+set queue adis_0q acl_users += okushnir
+set queue adis_0q acl_users += piniko
+set queue adis_0q acl_users += sternadi
+set queue adis_0q acl_users += taliakustin
+set queue adis_0q acl_users += talzinger
+set queue adis_0q from_route_only = True
+set queue adis_0q resources_max.walltime = 2400:00:00
+set queue adis_0q default_chunk.Qlist = adis
+set queue adis_0q enabled = True
+set queue adis_0q started = True
+#
 # Set server attributes.
 #
 set server scheduling = True
@@ -677,6 +747,6 @@ set server pbs_license_info = 6200@localhost
 set server pbs_license_min = 1
 set server pbs_license_max = 2147483647
 set server pbs_license_linger_time = 31536000
-set server license_count = "Avail_Global:1852 Avail_Local:120 Used:28 High_Use:148 Avail_Sockets:0 Unused_Sockets:0"
+set server license_count = "Avail_Global:1808 Avail_Local:191 Used:1 High_Use:192 Avail_Sockets:0 Unused_Sockets:0"
 set server eligible_time_enable = True
 set server max_concurrent_provision = 5
