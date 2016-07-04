@@ -20,6 +20,7 @@ set resource Qlist flag = h
 #
 create queue dieguez
 set queue dieguez queue_type = Execution
+set queue dieguez Priority = 200
 set queue dieguez acl_user_enable = True
 set queue dieguez acl_users = akanshas
 set queue dieguez acl_users += amirnatan
@@ -36,6 +37,7 @@ set queue dieguez started = True
 #
 create queue inf
 set queue inf queue_type = Execution
+set queue inf Priority = 50
 set queue inf resources_max.cput = 1500:00:00
 set queue inf resources_max.mem = 1000mb
 set queue inf resources_max.ncpus = 1
@@ -56,6 +58,7 @@ set queue inf started = True
 #
 create queue nano2
 set queue nano2 queue_type = Execution
+set queue nano2 Priority = 200
 set queue nano2 acl_user_enable = True
 set queue nano2 acl_users = eialteom
 set queue nano2 acl_users += gregory7
@@ -76,6 +79,7 @@ set queue nano2 started = True
 #
 create queue nano5
 set queue nano5 queue_type = Execution
+set queue nano5 Priority = 200
 set queue nano5 acl_user_enable = True
 set queue nano5 acl_users = advazehavi
 set queue nano5 acl_users += rabani
@@ -92,6 +96,7 @@ set queue nano5 started = True
 #
 create queue nano3
 set queue nano3 queue_type = Execution
+set queue nano3 Priority = 200
 set queue nano3 acl_user_enable = True
 set queue nano3 acl_users = aflow
 set queue nano3 acl_users += alonheve
@@ -134,6 +139,7 @@ set queue nano3 started = True
 #
 create queue shokefmem
 set queue shokefmem queue_type = Execution
+set queue shokefmem Priority = 200
 set queue shokefmem acl_user_enable = True
 set queue shokefmem acl_users = antinaghosh
 set queue shokefmem acl_users += danny
@@ -152,6 +158,7 @@ set queue shokefmem started = True
 #
 create queue nano1
 set queue nano1 queue_type = Execution
+set queue nano1 Priority = 200
 set queue nano1 acl_user_enable = True
 set queue nano1 acl_users = anitzan
 set queue nano1 acl_users += cosby
@@ -175,6 +182,7 @@ set queue nano1 started = True
 #
 create queue paster
 set queue paster queue_type = Execution
+set queue paster Priority = 200
 set queue paster acl_user_enable = True
 set queue paster acl_users = benneriah
 set queue paster acl_users += hermanh
@@ -212,6 +220,7 @@ set queue shokefr started = True
 #
 create queue gophna
 set queue gophna queue_type = Execution
+set queue gophna Priority = 200
 set queue gophna acl_user_enable = True
 set queue gophna acl_users = danny
 set queue gophna acl_users += leahfa
@@ -226,6 +235,7 @@ set queue gophna started = True
 #
 create queue shokef
 set queue shokef queue_type = Execution
+set queue shokef Priority = 200
 set queue shokef acl_user_enable = True
 set queue shokef acl_users = antinaghosh
 set queue shokef acl_users += danny
@@ -244,6 +254,7 @@ set queue shokef started = True
 #
 create queue amir-express
 set queue amir-express queue_type = Execution
+set queue amir-express Priority = 200
 set queue amir-express acl_user_enable = True
 set queue amir-express acl_users = aflow
 set queue amir-express acl_users += alonheve
@@ -282,6 +293,7 @@ set queue amir-express started = True
 #
 create queue hugemem
 set queue hugemem queue_type = Execution
+set queue hugemem Priority = 50
 set queue hugemem resources_max.cput = 72:00:00
 set queue hugemem resources_max.mem = 15gb
 set queue hugemem resources_max.ncpus = 1
@@ -302,6 +314,7 @@ set queue hugemem started = True
 #
 create queue parallel
 set queue parallel queue_type = Execution
+set queue parallel Priority = 50
 set queue parallel resources_max.cput = 192:00:00
 set queue parallel resources_max.mem = 10gb
 set queue parallel resources_max.pvmem = 10gb
@@ -318,6 +331,7 @@ set queue parallel started = True
 #
 create queue bigmem
 set queue bigmem queue_type = Execution
+set queue bigmem Priority = 50
 set queue bigmem resources_max.cput = 24:00:00
 set queue bigmem resources_max.mem = 50000mb
 set queue bigmem resources_max.ncpus = 20
@@ -338,6 +352,7 @@ set queue bigmem started = True
 #
 create queue short
 set queue short queue_type = Execution
+set queue short Priority = 50
 set queue short resources_max.cput = 24:00:00
 set queue short resources_max.mem = 1800mb
 set queue short resources_max.ncpus = 1
@@ -356,6 +371,7 @@ set queue short started = True
 #
 create queue schwartz
 set queue schwartz queue_type = Execution
+set queue schwartz Priority = 200
 set queue schwartz acl_user_enable = True
 set queue schwartz acl_users = avishaye
 set queue schwartz acl_users += michail
@@ -371,6 +387,7 @@ set queue schwartz started = True
 #
 create queue geos
 set queue geos queue_type = Execution
+set queue geos Priority = 200
 set queue geos acl_user_enable = True
 set queue geos acl_users = einat
 set queue geos acl_users += harnik
@@ -388,6 +405,7 @@ set queue geos started = True
 #
 create queue amir-medium
 set queue amir-medium queue_type = Execution
+set queue amir-medium Priority = 200
 set queue amir-medium acl_user_enable = True
 set queue amir-medium acl_users = aflow
 set queue amir-medium acl_users += alonheve
@@ -424,6 +442,7 @@ set queue amir-medium started = True
 #
 create queue sunny
 set queue sunny queue_type = Execution
+set queue sunny Priority = 200
 set queue sunny acl_user_enable = True
 set queue sunny acl_users = asafbe1
 set queue sunny resources_max.walltime = 2400:00:00
@@ -434,6 +453,7 @@ set queue sunny started = True
 #
 create queue phys
 set queue phys queue_type = Execution
+set queue phys Priority = 200
 set queue phys acl_user_enable = True
 set queue phys acl_users = aviadlan
 set queue phys acl_users += einat
@@ -454,6 +474,7 @@ set queue phys started = True
 #
 create queue barkana
 set queue barkana queue_type = Execution
+set queue barkana Priority = 200
 set queue barkana acl_user_enable = True
 set queue barkana acl_users = amirlev8
 set queue barkana acl_users += anstasi3
@@ -466,16 +487,6 @@ set queue barkana acl_users += matanlotem
 set queue barkana resources_max.walltime = 2400:00:00
 set queue barkana enabled = True
 set queue barkana started = True
-#
-# Create and define queue power_queue
-#
-create queue power_queue
-set queue power_queue queue_type = Execution
-set queue power_queue from_route_only = True
-set queue power_queue default_chunk.Qlist = power_queue
-set queue power_queue max_run_soft = [p:general_guest_job_project=0]
-set queue power_queue enabled = True
-set queue power_queue started = True
 #
 # Create and define queue adis
 #
@@ -757,7 +768,7 @@ set server pbs_license_info = 6200@localhost
 set server pbs_license_min = 1
 set server pbs_license_max = 2147483647
 set server pbs_license_linger_time = 31536000
-set server license_count = "Avail_Global:1355 Avail_Local:597 Used:48 High_Use:645 Avail_Sockets:0 Unused_Sockets:0"
+set server license_count = "Avail_Global:1355 Avail_Local:475 Used:170 High_Use:645 Avail_Sockets:0 Unused_Sockets:0"
 set server eligible_time_enable = True
 set server max_concurrent_provision = 5
 set server est_start_time_freq = 00:00:00
