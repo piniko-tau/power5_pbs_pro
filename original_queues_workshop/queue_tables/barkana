@@ -1,0 +1,14 @@
+
+barkana
+
+Execution
+
+acl_users : amirlev8,anstasi3,aviadco1,barkana,danny,einat,matanlotem
+
+
+max.walltime = 2400:00:00
+
+nodes: 62,64,65,66
+
+cpu count : 48
+

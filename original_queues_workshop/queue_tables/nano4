@@ -1,0 +1,19 @@
+
+nano4
+
+Execution
+
+acl_users : alexa9,coheneya1,dalon,danakrep,danny,einat,giladshaham,guzeliez,iddoweiner,itaileve,kirilll1,n5,odedhod,omershaked2,oriahmio,oscarfajardo,piniko,renanaco,shimshi,tamarzel,tamirtestgrp,zoharzaf
+
+
+max.walltime = 2400:00:00
+default.mem = 200mb
+default.ncpus = 1
+default.pmem = 200mb
+default.pvmem = 200mb
+default.vmem = 200mb
+
+nodes: 80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103
+
+cpu count : 384
+

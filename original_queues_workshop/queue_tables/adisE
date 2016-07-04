@@ -1,0 +1,19 @@
+
+adisE
+
+Execution
+
+acl_users : Open
+
+
+
+from_route_only = True
+max.walltime = 2400:00:00
+default.mem = 200mb
+max_run = [o:PBS_ALL=2]
+max_run_soft = [p:adis_guest_job_project=0]
+max_run_soft += [p:general_guest_job_project=0]
+
+nodes: 
+
+cpu count : 

@@ -1,0 +1,14 @@
+
+shokef
+
+Execution
+
+acl_users : antinaghosh,danny,eialteom,einat,gregory7,mayayev,nimrods6,romango1,shokef
+
+
+max.walltime = 2400:00:00
+
+nodes: 67,68,69,70,71,72,73,74,158,175,176,177,178,179,180
+
+cpu count : 252
+

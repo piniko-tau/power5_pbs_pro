@@ -1,0 +1,14 @@
+
+phys
+
+Execution
+
+acl_users : aviadlan,einat,elieis,hagitle2,idohalavi,kleinber,menache4,mirizilk,nivkeren,rotmanzi,shaharal
+
+
+max.walltime = 2400:00:00
+
+nodes: 1,2,3,16,17,18,19
+
+cpu count : 68
+

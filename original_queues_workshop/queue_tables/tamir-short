@@ -1,0 +1,23 @@
+
+tamir-short
+
+Execution
+
+acl_users : alexa9,coheneya1,dalon,danny,einat,giladshaham,guzeliez,iddoweiner,kirilll1,mayagalili,n5,omershaked2,oriahmio,piniko,renanaco,shimshi,tamirtestgrp,zoharzaf
+
+
+from_route_only = True
+max.cput = 05:00:00
+max.ncpus = 1
+max.walltime = 2400:00:00
+default.cput = 01:00:00
+default.mem = 100mb
+default.ncpus = 1
+default.pmem = 100mb
+default.pvmem = 200mb
+default.vmem = 200mb
+
+nodes: 45,46,47,48,49,50,51,53,56,58
+
+cpu count : 120
+

@@ -68,6 +68,7 @@ set queue nano2 resources_max.walltime = 2400:00:00
 set queue nano2 resources_default.mem = 200mb
 set queue nano2 resources_default.ncpus = 1
 set queue nano2 resources_default.pmem = 200mb
+set queue nano2 default_chunk.Qlist = nano
 set queue nano2 enabled = True
 set queue nano2 started = True
 #
@@ -83,6 +84,7 @@ set queue nano5 resources_max.walltime = 2400:00:00
 set queue nano5 resources_default.mem = 200mb
 set queue nano5 resources_default.ncpus = 1
 set queue nano5 resources_default.pmem = 200mb
+set queue nano5 default_chunk.Qlist = nano
 set queue nano5 enabled = True
 set queue nano5 started = True
 #
@@ -111,6 +113,7 @@ set queue nano3 acl_users += lohad
 set queue nano3 acl_users += mmurat
 set queue nano3 acl_users += natalykuritz
 set queue nano3 acl_users += ozzoshri
+set queue nano3 acl_users += piniko
 set queue nano3 acl_users += rachelga
 set queue nano3 acl_users += riancon
 set queue nano3 acl_users += ronlif
@@ -123,6 +126,7 @@ set queue nano3 resources_max.walltime = 2400:00:00
 set queue nano3 resources_default.mem = 200mb
 set queue nano3 resources_default.ncpus = 1
 set queue nano3 resources_default.pmem = 200mb
+set queue nano3 default_chunk.Qlist = nano
 set queue nano3 enabled = True
 set queue nano3 started = True
 #
@@ -163,6 +167,7 @@ set queue nano1 acl_users += noafreif
 set queue nano1 acl_users += santanu
 set queue nano1 resources_max.walltime = 2400:00:00
 set queue nano1 resources_default.ncpus = 1
+set queue nano1 default_chunk.Qlist = nano
 set queue nano1 enabled = True
 set queue nano1 started = True
 #
@@ -455,6 +460,7 @@ set queue barkana acl_users += anstasi3
 set queue barkana acl_users += aviadco1
 set queue barkana acl_users += barkana
 set queue barkana acl_users += danny
+set queue barkana acl_users += dvory
 set queue barkana acl_users += einat
 set queue barkana acl_users += matanlotem
 set queue barkana resources_max.walltime = 2400:00:00
@@ -651,18 +657,12 @@ set queue power_0qa1 max_run_soft = [p:general_guest_job_project=0]
 set queue power_0qa1 enabled = True
 set queue power_0qa1 started = True
 #
-# Create and define queue live_q
-#
-create queue live_q
-set queue live_q queue_type = Execution
-set queue live_q enabled = True
-set queue live_q started = True
-#
 # Create and define queue tamir-short
 #
 create queue tamir-short
 set queue tamir-short queue_type = Execution
 set queue tamir-short Priority = 200
+set queue tamir-short max_queued_res.ncpus = [o:PBS_ALL=120]
 set queue tamir-short acl_user_enable = True
 set queue tamir-short acl_users = alexa9
 set queue tamir-short acl_users += coheneya1
@@ -695,6 +695,7 @@ set queue tamir-short resources_default.ncpus = 1
 set queue tamir-short resources_default.pmem = 100mb
 set queue tamir-short resources_default.pvmem = 200mb
 set queue tamir-short resources_default.vmem = 200mb
+set queue tamir-short default_chunk.Qlist = tamir-short
 set queue tamir-short enabled = True
 set queue tamir-short started = True
 #
@@ -735,6 +736,7 @@ set queue nano4 resources_default.ncpus = 1
 set queue nano4 resources_default.pmem = 200mb
 set queue nano4 resources_default.pvmem = 200mb
 set queue nano4 resources_default.vmem = 200mb
+set queue nano4 default_chunk.Qlist = nano
 set queue nano4 enabled = True
 set queue nano4 started = True
 #
@@ -755,6 +757,7 @@ set server pbs_license_info = 6200@localhost
 set server pbs_license_min = 1
 set server pbs_license_max = 2147483647
 set server pbs_license_linger_time = 31536000
-set server license_count = "Avail_Global:1423 Avail_Local:0 Used:577 High_Use:577 Avail_Sockets:0 Unused_Sockets:0"
+set server license_count = "Avail_Global:1355 Avail_Local:597 Used:48 High_Use:645 Avail_Sockets:0 Unused_Sockets:0"
 set server eligible_time_enable = True
 set server max_concurrent_provision = 5
+set server est_start_time_freq = 00:00:00

@@ -1,0 +1,27 @@
+
+bigmem
+
+Execution
+
+acl_users : Open
+
+
+
+max.cput = 24:00:00
+max.mem = 50000mb
+max.ncpus = 20
+max.pmem = 52000mb
+max.pvmem = 58000mb
+max.vmem = 68000mb
+max.walltime = 2400:00:00
+default.cput = 2000:00:00
+default.mem = 500mb
+default.pmem = 500mb
+default.pvmem = 900mb
+default.vmem = 1100mb
+max_run = [u:PBS_GENERIC=12]
+
+nodes: 80,86,90,142
+
+cpu count : 64
+
