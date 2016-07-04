@@ -42,7 +42,7 @@ round_robin: false	all
 
 #by_queue: true		prime
 #by_queue: true		non_prime
-by_queue: false      all
+by_queue: True      all
 
 
 #
@@ -346,7 +346,7 @@ fairshare_entity: euser
 #
 #	NO PRIME OPTION
 
-fairshare_decay_time: 24:00:00
+fairshare_decay_time: 3:00:00
 
 #
 # fairshare_decay_factor
@@ -378,7 +378,7 @@ fairshare_decay_factor: 0.5
 #
 #	PRIME OPTION
 
-preemptive_sched: true	ALL
+preemptive_sched: False	ALL
 
 #
 # preempt_queue_prio
@@ -450,8 +450,10 @@ preempt_queue_prio:	100
 #	NO PRIME OPTION
 
 #preempt_prio: "express_queue, normal_jobs, fairshare"
-preempt_prio: "express_queue,queue_softlimits,fairshare,normal_jobs"
+#preempt_prio: "express_queue,queue_softlimits,fairshare,normal_jobs"
 #preempt_prio: "normal_jobs,queue_softlimits"
+preempt_prio: "express_queue,queue_softlimits,normal_jobs"
+
 #
 
 # preempt_order
@@ -600,8 +602,8 @@ dedicated_prefix: ded
 #
 #	NO PRIME OPTION
 
-log_filter: 3328
-
+#log_filter: 3328
+log_filter: 4064
 # undef stuff here : vmeme causes problems , so undef it
 #
 resource_unset_infinite: "vmem"
