@@ -1,25 +1,31 @@
 #!/bin/bash
 
 
-if [ -z "$1" ]
+if [ -z "$1" ] || [ -z "$2" ]
 then 
+printf "\n\n"
 echo "please add a queue argument followed by a Qlist argument"
+printf "\n\texample: connect_queue_2_nodes.sh adis adis\n"
 echo "exiting"
 exit 1
 fi
 
-echo "checking if queue and nodes are defined OK..."
-echo ""
-echo ""
-sleep 2
+printf "\n\n"
+echo "checking if queue $1 and its nodes are defined OK..."
+printf "\n\n"
+sleep 1
 
 if qmgr -c "p q $1" | grep -q "Qlist = $2"
 then
-printf "queue Qlist variable is defined ok :\n "
+echo -en "\E[32m""Queue $1 Qlist variable is defined ok :"
+tput sgr0
+printf "\n\n\t"
 qmgr -c "p q $1" | grep "Qlist = $1"
 echo ""
 else
-printf "please set this:\n\n"
+echo -en "\E[32m""Please set this for $1 queue :"
+tput sgr0
+printf "\n\n\t"
 echo "qmgr -c \"set queue $1 default_chunk.Qlist = $1\""
 fi
 
@@ -40,9 +46,13 @@ do
 		if grep $p5compute $p5_git_dir/nodesp2|grep -q $1  
 		then	
 		if ! [[ $m = True ]] ;then
-		printf "\n\nplease set this:\n\n"
+		printf "\n\n"
+		echo -en "\E[32m""Please set this for $1 nodes :"
+		tput sgr0
+		printf "\n\n"
 		fi
 		m="True"
+		printf "\t"
 		echo "qmgr -c \"set node $p5compute resources_available.Qlist += $2\" "
 		fi
 	fi
