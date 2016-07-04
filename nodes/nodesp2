@@ -152,6 +152,11 @@ compute-0-170 np=24 adis parallel
 compute-0-171 np=24 adis parallel
 compute-0-172 np=24 adis
 compute-0-173 np=24 adis
+compute-0-164.power5 adis
+compute-0-165.power5 adis
+compute-0-166.power5 adis
+compute-0-167.power5 adis
+compute-0-174.power5 adis
 compute-0-175 np=24 shokef mem64
 compute-0-176 np=24 shokef mem64
 compute-0-177 np=24 shokef mem64
