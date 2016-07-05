@@ -5,7 +5,7 @@ if [ -z "$1" ] || [ -z "$2" ]
 then 
 printf "\n\n"
 echo "please add a queue argument followed by a Qlist argument"
-printf "\n\texample: connect_queue_2_nodes.sh adis adis\n"
+printf "\n\texample: connect_queue_2_nodes_check.sh adis adis\n"
 echo "exiting"
 exit 1
 fi
