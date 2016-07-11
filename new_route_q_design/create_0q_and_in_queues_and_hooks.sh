@@ -1,11 +1,14 @@
 #!/bin/bash
 #
-#new queue adis_in
+#new queue original_in
 #
-#route : original_0q -> original_pq -> original
+#route : original_0q -> original_p0q -> original
 #
 #this script will create a new queue_in :
-#
+
+#1)first create and populate original_0q (0q copy)
+#2)then create and populate original_p0q (all-0q copy)
+#3)finally create a original_in outing queue 
 
 if [ -z "$1" ] 
 then 
@@ -15,18 +18,27 @@ echo "exiting"
 exit 1
 fi
 
+############################ PART 1 #####################################
+
+###################################### check total number of nodes for limit ##################
+original_q_ncpu_sum=`count_queue_cores.sh $1|awk '{print $6}'`
+
 ################################################## first create a 0q copy of the original queue
 printf "\nNew 0q queue setup :\n\n"
 qmgr -c "p q $1"|grep -v '^#'|sed 's/'"$1"'/'"$1"'_0q/g'
 #add :
 echo "set queue $1_0q from_route_only = True"
-echo "set queue $1 default_chunk.Qlist = $1_0q"
-printf "\n\n"
-###############################################################################################
+echo "set queue $1_0q default_chunk.Qlist = $1_0q"
+echo "set queue $1_0q max_queued_res.ncpus = [o:PBS_ALL=$original_q_ncpu_sum]"
 
+printf "\n\n"
+###################################### add the nodes to the queue #########################################################
+connect_queue_2_nodes_check.sh $1 $1_0q|sed 's/ '$1' / '$1'_0q /g'
+printf "\n\n"
+#####################################################################################33
 #calculate the queue_0q nodes from the original:
 
-q0_nodes=`qmgr -c 'p n @d'|grep -w adis|awk '{print "\""$3"\""}'|paste -s -d','`
+q0_nodes=`qmgr -c 'p n @d'|grep -w $1|awk '{print "\""$3"\""}'|paste -s -d','`
 
 #################################################### then create a 0q hook for this queue
 echo "qmgr -c \"create hook check_and_route_$1_0q event=\"queuejob\"\""
@@ -60,7 +72,7 @@ try:
 				else:
 					e.accept()
 					break
-			next_queue = pbs.server().queue("$1_pq")
+			next_queue = pbs.server().queue("$1_p0q")
 			e.job.queue = next_queue	
 except SystemExit:
 	pass
@@ -73,11 +85,34 @@ echo "qmgr -c \"import hook check_and_route_$1_0q application/x-python default /
 
 ###########################################################################################
 
+################################# PART 2 ###################################################3
 
-
-#then create a original_pq of everything else 
+#then create a original_p0q of everything else 
 #meaning that it contans all the nodes NOT in original_0q
 
+################################################## create a 0q copy of the original queue
+printf "\nNew p0q queue setup :\n\n"
+qmgr -c "p q $1"|grep -v '^#'|sed 's/'"$1"'/'"$1"'_p0q/g'
+#add :
+echo "set queue $1_p0q from_route_only = True"
+echo "set queue $1 default_chunk.Qlist = $1_p0q"
+printf "\n\n"
+###############################################################################################
+###################################### add the nodes to the queue #########################################################
+
+#tamir-short and nano are off limits for now
+p0q_queue_list=(dieguez inf shokefmem paster gophna shokef amir-express hugemem parallel bigmem short schwartz geos amir-medium sunny phys barkana adis)
+p0q_queue_list=(dieguez inf adis)
+for queue in ${p0q_queue_list[@]};do
+        if [ $queue = "$1" ];then continue;fi
+        connect_queue_2_nodes_check.sh $queue $1_p0q|sed 's/ '$queue' / '$1'_p0q /g'
+done|grep qmgr|sort -u
+printf "\n\n"
+############################# add 0q run limit to the queue  ########################################################33
+p0q_ncpu_sum=`count_queue_cores.sh $1|awk '{print $6}'`
+echo "add this limit to the p0q : "
+echo "set queue $1_0q max_queued_res.ncpus = [o:PBS_ALL=$p0q_ncpu_sum]"
+printf "\n\n"
 
 
 
