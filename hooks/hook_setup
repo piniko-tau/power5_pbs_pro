@@ -1,0 +1,7 @@
+qmgr -c 'create hook hook_name event="queuejob"'
+
+create hook file in /var/spool/PBS/hooks/
+
+qmgr -c 'import hook hook_name application/x-python default /var/spool/PBS/hooks/hook_file.py'                              
+
+

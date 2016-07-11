@@ -1,0 +1,4 @@
+#!/bin/bash -l
+
+qsub -v in_queue_credential=1 "$@"
+sleep 2

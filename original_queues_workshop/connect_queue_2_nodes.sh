@@ -20,13 +20,13 @@ then
 echo -en "\E[32m""Queue $1 Qlist variable is defined ok :"
 tput sgr0
 printf "\n\t"
-qmgr -c "p q $1" | grep "Qlist = $1"
+qmgr -c "p q $1" | grep "Qlist = $2"
 echo ""
 else
 echo -en "\E[32m""Please set this for $1 queue :"
 tput sgr0
 printf "\n\n\t"
-echo "qmgr -c \"set queue $1 default_chunk.Qlist = $1\""
+echo "qmgr -c \"set queue $1 default_chunk.Qlist = $2\""
 fi
 
 p5_git_dir="/root/power5_pbspro_configs_git/nodes"
