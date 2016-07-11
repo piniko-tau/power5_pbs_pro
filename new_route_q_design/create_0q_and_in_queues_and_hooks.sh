@@ -111,7 +111,7 @@ printf "\n\n"
 ############################# add 0q run limit to the queue  ########################################################33
 p0q_ncpu_sum=`count_queue_cores.sh $1|awk '{print $6}'`
 echo "add this limit to the p0q : "
-echo "set queue $1_0q max_queued_res.ncpus = [o:PBS_ALL=$p0q_ncpu_sum]"
+echo "set queue $1_p0q max_queued_res.ncpus = [o:PBS_ALL=$p0q_ncpu_sum]"
 printf "\n\n"
 
 ######################################## then create a p0q hook for this queue
