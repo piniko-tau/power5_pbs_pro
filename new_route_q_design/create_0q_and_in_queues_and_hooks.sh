@@ -114,7 +114,11 @@ echo "add this limit to the p0q : "
 echo "set queue $1_0q max_queued_res.ncpus = [o:PBS_ALL=$p0q_ncpu_sum]"
 printf "\n\n"
 
+######################################## then create a p0q hook for this queue
 
+
+
+#####################################################################################################################
 
 #finally create the routing queue :
 #qmgr -c 'p q adis'|grep -v '^#'|sed s/Execution/Route/g|sed 's/adis/adis_in/g'
