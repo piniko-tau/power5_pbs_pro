@@ -35,6 +35,7 @@ qmgr -c "p q $1"|grep -v '^#'|sed 's/'"$1"'/'"$1"'_0q/g'|sed 's/Priority = 200/P
 #add :
 echo "set queue $1_0q from_route_only = True"
 echo "set queue $1_0q max_queued_res.ncpus = [o:PBS_ALL=$original_q_ncpu_sum]"
+echo "set queue $1_0q queued_jobs_threshold = [o:PBS_ALL = 5]"
 
 printf "\n\n"
 ##################################################################################################################
@@ -105,6 +106,7 @@ printf "\nNew p0q queue setup :\n\n"
 qmgr -c "p q $1"|grep -v '^#'|sed 's/'"$1"'/'"$1"'_p0q/g'|sed 's/Priority = 200/Priority = 100/g'
 #add :
 echo "set queue $1_p0q from_route_only = True"
+echo "set queue $1_p0q queued_jobs_threshold = [o:PBS_ALL = 5]"
 printf "\n\n"
 ###############################################################################################
 echo "###################################### add the nodes to the queue #########################################################"
@@ -115,6 +117,11 @@ for queue in ${p0q_queue_list[@]};do
         if [ $queue = "$1" ];then continue;fi
         connect_queue_2_nodes_check.sh $queue $1_p0q|sed 's/ '$queue' / '$1'_p0q /g'
 done|grep qmgr|sort -u
+printf "\n\n"
+
+echo "Please run the suggested commands , only then press [ENTER]:"
+read ans
+
 printf "\n\n"
 #############################################################################################################################
 echo "############################# add 0q run limit to the queue  ########################################################"
@@ -179,11 +186,11 @@ echo "######################## routing queue  ##################################
 printf "\n\n"
 echo "finally create the routing queue :"
 printf "\n\n"
-qmgr -c "p q $1"|grep -v '^#'|sed 's/Execution/Route/g'|sed 's/'"$1"'/'"$1"'_in/g'
+qmgr -c "p q $1"|grep -v '^#'|sed 's/Execution/Route/g'|sed 's/'"$1"'/'"$1"'_in/g'|grep -v 'default_chunk'
 echo "set queue $1_in route_destinations = $1_0q"
 echo "set queue $1_in route_destinations += $1_p0q"
 echo "set queue $1_in route_destinations += $1"
-
+echo "repeat if needed : set queue $1_in enabled = True"
 
 printf "\n\n"
 
