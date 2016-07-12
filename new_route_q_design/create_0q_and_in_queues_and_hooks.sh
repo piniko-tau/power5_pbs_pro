@@ -48,6 +48,7 @@ q0_nodes=`qmgr -c 'p n @d'|grep -w $1|awk '{print "\""$3"\""}'|paste -s -d','`
 
 ########################################################################################3
 echo "#################################################### then create a 0q hook for this queue"
+printf "\n\n"
 echo "qmgr -c \"create hook check_and_route_$1_0q event=\"queuejob\"\""
 printf "\n\tHook File check_and_route_$1_0q contents:\n\n"
 printf "\nPut this is /var/spool/PBS/hooks/check_and_route_$1_0q.py\n"
@@ -189,3 +190,17 @@ printf "\n\n"
 echo "#######################################################################################################################"
 echo "################################### IN QUEUE CONFIGS END ##############################################################"
 echo "#######################################################################################################################"
+
+
+printf "\n\n"
+echo "#################################### HOW TO DELETE THESE CONFIGS : #####################################################"
+printf "\n\n"
+echo "qmgr -c \"d h check_and_route_$1_0q\""
+echo "qmgr -c \"d h check_and_route_$1_p0q\""
+echo "qmgr -c \"d q $1_0q\""
+echo "qmgr -c \"d q $1_p0q\""
+echo "qmgr -c \"d q $1_in\""
+echo "qmgr -c \"p n @d\"|grep "adis_"|sed 's/set/unset/g'"
+printf "\n\n"
+echo "#################################### END OF DELETE CONFIGS SECTION  #####################################################"
+
