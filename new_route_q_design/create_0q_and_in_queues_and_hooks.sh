@@ -200,7 +200,7 @@ echo "qmgr -c \"d h check_and_route_$1_p0q\""
 echo "qmgr -c \"d q $1_0q\""
 echo "qmgr -c \"d q $1_p0q\""
 echo "qmgr -c \"d q $1_in\""
-echo "qmgr -c \"p n @d\"|grep "adis_"|sed 's/set/unset/g'"
+echo "qmgr -c \"p n @d\"|grep "adis_"|sed 's/+/-/g'"
 printf "\n\n"
 echo "#################################### END OF DELETE CONFIGS SECTION  #####################################################"
 
