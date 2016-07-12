@@ -18,7 +18,13 @@ echo "exiting"
 exit 1
 fi
 
-############################ PART 1 #####################################
+echo "#######################################################################################################################"
+echo "################################### IN QUEUE CONFIGS START ############################################################"
+echo "#######################################################################################################################"
+
+
+########################################################################################
+echo "########################### PART 1 #####################################"
 
 ###################################### check total number of nodes for limit ##################
 original_q_ncpu_sum=`count_queue_cores.sh $1|awk '{print $6}'`
@@ -28,11 +34,11 @@ printf "\nNew 0q queue setup :\n\n"
 qmgr -c "p q $1"|grep -v '^#'|sed 's/'"$1"'/'"$1"'_0q/g'
 #add :
 echo "set queue $1_0q from_route_only = True"
-echo "set queue $1_0q default_chunk.Qlist = $1_0q"
 echo "set queue $1_0q max_queued_res.ncpus = [o:PBS_ALL=$original_q_ncpu_sum]"
 
 printf "\n\n"
-###################################### add the nodes to the queue #########################################################
+##################################################################################################################
+echo "###################################### add the nodes to the queue #########################################################"
 connect_queue_2_nodes_check.sh $1 $1_0q|sed 's/ '$1' / '$1'_0q /g'
 printf "\n\n"
 #####################################################################################33
@@ -40,7 +46,8 @@ printf "\n\n"
 
 q0_nodes=`qmgr -c 'p n @d'|grep -w $1|awk '{print "\""$3"\""}'|paste -s -d','`
 
-#################################################### then create a 0q hook for this queue
+########################################################################################3
+echo "#################################################### then create a 0q hook for this queue"
 echo "qmgr -c \"create hook check_and_route_$1_0q event=\"queuejob\"\""
 printf "\n\tHook File check_and_route_$1_0q contents:\n\n"
 printf "\nPut this is /var/spool/PBS/hooks/check_and_route_$1_0q.py\n"
@@ -79,37 +86,38 @@ except SystemExit:
 except :
 	e.reject("Error, Make sure you use --> qsub_in <-- command to submit to this queue!")
 EOF
-print "\n\n"
+printf "\n\n"
 
 echo "qmgr -c \"import hook check_and_route_$1_0q application/x-python default /var/spool/PBS/hooks/check_and_route_$1_0q.py\""
+printf "\n\n"
 
 ###########################################################################################
 
-################################# PART 2 ###################################################3
+echo "################################# PART 2 ###################################################"
 
 #then create a original_p0q of everything else 
 #meaning that it contans all the nodes NOT in original_0q
 
-################################################## create a 0q copy of the original queue
+#########################################################################################################
+echo "################################################## create a 0q copy of the original queue"
 printf "\nNew p0q queue setup :\n\n"
 qmgr -c "p q $1"|grep -v '^#'|sed 's/'"$1"'/'"$1"'_p0q/g'
 #add :
 echo "set queue $1_p0q from_route_only = True"
-echo "set queue $1 default_chunk.Qlist = $1_p0q"
 printf "\n\n"
 ###############################################################################################
-###################################### add the nodes to the queue #########################################################
-
+echo "###################################### add the nodes to the queue #########################################################"
+printf "\n\n Calculating _p0q nodes... \n\n" 
 #tamir-short and nano are off limits for now
 p0q_queue_list=(dieguez inf shokefmem paster gophna shokef amir-express hugemem parallel bigmem short schwartz geos amir-medium sunny phys barkana adis)
-p0q_queue_list=(dieguez inf adis)
 for queue in ${p0q_queue_list[@]};do
         if [ $queue = "$1" ];then continue;fi
         connect_queue_2_nodes_check.sh $queue $1_p0q|sed 's/ '$queue' / '$1'_p0q /g'
 done|grep qmgr|sort -u
 printf "\n\n"
-############################# add 0q run limit to the queue  ########################################################33
-p0q_ncpu_sum=`count_queue_cores.sh $1|awk '{print $6}'`
+#############################################################################################################################
+echo "############################# add 0q run limit to the queue  ########################################################"
+p0q_ncpu_sum=`count_queue_cores.sh $1_p0q|awk '{print $6}'`
 echo "add this limit to the p0q : "
 echo "set queue $1_p0q max_queued_res.ncpus = [o:PBS_ALL=$p0q_ncpu_sum]"
 printf "\n\n"
@@ -118,8 +126,9 @@ printf "\n\n"
 #calculate the queue_0q nodes from the original:
 
 p0q_node_list=`qmgr -c 'p n @d'|grep -w $1_p0q|awk '{print "\""$3"\""}'|paste -s -d','`
-
-######################################## then create a p0q hook for this queue
+##################################################################################################################
+echo "######################################## then create a p0q hook for this queue ###################################"
+printf "\n\n"
 echo "qmgr -c \"create hook check_and_route_$1_p0q event=\"queuejob\"\""
 printf "\n\tHook File check_and_route_$1_p0q contents:\n\n"
 printf "\nPut this is /var/spool/PBS/hooks/check_and_route_$1_p0q.py\n"
@@ -132,7 +141,7 @@ import sys
 try:
         e = pbs.event() 
         if e.job.queue:
-                if (e.job.queue.name in ["$1_in","$1_p0q"]):
+                if (e.job.queue.name in ["$1_p0q"]):
                         if (e.job.Variable_List["in_queue_credential"] != "1"):
                                 e.reject("Error, Make sure you use --> qsub_in <-- command to submit to this queue!")
 
@@ -158,18 +167,25 @@ except SystemExit:
 except :
         e.reject("Error, Make sure you use --> qsub_in <-- command to submit to this queue!")
 EOF
-print "\n\n"
+printf "\n\n"
 
 echo "qmgr -c \"import hook check_and_route_$1_p0q application/x-python default /var/spool/PBS/hooks/check_and_route_$1_p0q.py\""
+printf "\n\n"
 
 ###########################################################################################
-
-#####################################################################################################################
+echo "################# PART 3 #############################################################################"
+echo "######################## routing queue  #############################################################################################"
 printf "\n\n"
 echo "finally create the routing queue :"
 printf "\n\n"
-echo "qmgr -c \"p q $1\"|grep -v \'^#\'|sed s/Execution/Route/g|sed \'s/$1/$1_in/g\'"
-echo "qmgr -c \"set queue $1_in route_destinations = $1_0q\""
-echo "qmgr -c \"set queue $1_in route_destinations += power_queue_0q\""
-echo "qmgr -c \"set queue $1_in route_destinations += $1\""
+qmgr -c "p q $1"|grep -v '^#'|sed 's/Execution/Route/g'|sed 's/'"$1"'/'"$1"'_in/g'
+echo "set queue $1_in route_destinations = $1_0q"
+echo "set queue $1_in route_destinations += $1_p0q"
+echo "set queue $1_in route_destinations += $1"
 
+
+printf "\n\n"
+
+echo "#######################################################################################################################"
+echo "################################### IN QUEUE CONFIGS END ##############################################################"
+echo "#######################################################################################################################"
