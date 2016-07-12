@@ -114,16 +114,62 @@ echo "add this limit to the p0q : "
 echo "set queue $1_p0q max_queued_res.ncpus = [o:PBS_ALL=$p0q_ncpu_sum]"
 printf "\n\n"
 
+#####################################################################################33
+#calculate the queue_0q nodes from the original:
+
+p0q_node_list=`qmgr -c 'p n @d'|grep -w $1_p0q|awk '{print "\""$3"\""}'|paste -s -d','`
+
 ######################################## then create a p0q hook for this queue
+echo "qmgr -c \"create hook check_and_route_$1_p0q event=\"queuejob\"\""
+printf "\n\tHook File check_and_route_$1_p0q contents:\n\n"
+printf "\nPut this is /var/spool/PBS/hooks/check_and_route_$1_p0q.py\n"
+cat <<EOF
+import pbs
+import sys
+#qmgr -c 'create hook check_and_route_$1_p0q event="queuejob"'
+#qmgr -c 'import hook check_and_route_$1_p0q application/x-python default /var/spool/PBS/hooks/check_and_route_$1_p0q.py' 
+#qmgr -c 'd h check_and_route_$1_p0q'
+try:
+        e = pbs.event() 
+        if e.job.queue:
+                if (e.job.queue.name in ["$1_in","$1_p0q"]):
+                        if (e.job.Variable_List["in_queue_credential"] != "1"):
+                                e.reject("Error, Make sure you use --> qsub_in <-- command to submit to this queue!")
 
+                        $1_p0q_nodes_list = [$p0q_node_list]
 
+                        for qnode in $1_p0q_nodes_list:
+
+                                node=pbs.server().vnode(qnode)
+                                node_ncpu_total = node.resources_available["ncpus"]
+                                node_ncpu_used = node.resources_assigned["ncpus"]
+                                node_ncpu_free = node_ncpu_total - node_ncpu_used
+                                job_ncpus = e.job.Resource_List["ncpus"]
+
+                                if ( job_ncpus > node_ncpu_free ):
+                                        pass
+                                else:
+                                        e.accept()
+                                        break
+                        next_queue = pbs.server().queue("$1")
+                        e.job.queue = next_queue        
+except SystemExit:
+        pass
+except :
+        e.reject("Error, Make sure you use --> qsub_in <-- command to submit to this queue!")
+EOF
+print "\n\n"
+
+echo "qmgr -c \"import hook check_and_route_$1_p0q application/x-python default /var/spool/PBS/hooks/check_and_route_$1_p0q.py\""
+
+###########################################################################################
 
 #####################################################################################################################
-
-#finally create the routing queue :
-#qmgr -c 'p q adis'|grep -v '^#'|sed s/Execution/Route/g|sed 's/adis/adis_in/g'
-##add : 
-#echo 'set queue adis_in route_destinations = adis_0q'
-#echo 'set queue adis_in route_destinations += power_queue_0q'
-#echo 'set queue adis_in route_destinations += adis'
+printf "\n\n"
+echo "finally create the routing queue :"
+printf "\n\n"
+echo "qmgr -c \"p q $1\"|grep -v \'^#\'|sed s/Execution/Route/g|sed \'s/$1/$1_in/g\'"
+echo "qmgr -c \"set queue $1_in route_destinations = $1_0q\""
+echo "qmgr -c \"set queue $1_in route_destinations += power_queue_0q\""
+echo "qmgr -c \"set queue $1_in route_destinations += $1\""
 
