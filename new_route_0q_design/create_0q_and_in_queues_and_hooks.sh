@@ -41,6 +41,7 @@ qmgr -c "p q $1"|grep -v '^#'|sed 's/'"$1"'/'"$1"'_0q/g'|sed 's/Priority = 200/P
 echo "set queue $1_0q max_queued_res.ncpus = [o:PBS_ALL=$original_q_ncpu_sum]"
 echo "set queue $1_0q queued_jobs_threshold = [o:PBS_ALL = 5]"
 echo "set queue $1_0q from_route_only = True"
+echo "set queue $1_0q resources_max.cput = 01:00:00"
 
 printf "\n\n"
 ##################################################################################################################
@@ -95,6 +96,8 @@ qmgr -c "p q $1"|grep -v '^#'|sed 's/'"$1"'/'"$1"'_p0q/g'|sed 's/Priority = 200/
 #add :
 echo "set queue $1_p0q from_route_only = True"
 echo "set queue $1_p0q queued_jobs_threshold = [o:PBS_ALL = 1]"
+echo "set queue $1_p0q resources_max.cput = 01:00:00"
+
 printf "\n\n"
 ###############################################################################################
 echo "###################################### add the nodes to the queue #########################################################"
