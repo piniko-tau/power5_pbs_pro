@@ -1,0 +1,25 @@
+#!/bin/bash -l
+#set -x
+#qsub -v in_queue_credential=1 "$@"
+
+new_qsub_line=`echo "$*"`
+echo "whole line : "$new_qsub_line
+
+echo $new_qsub_line | grep -q '^-v\| -v'
+
+if [ $? -eq 0  ]                        
+
+then
+        #add queue_credential var
+        credential_var="in_queue_credential=1,"
+        var_args=`echo $new_qsub_line|sed 's/.*-v//g'|awk '{print $1}'`
+        echo "var args "$var_args
+        new_qsub_line_with_credential=`echo $new_qsub_line|sed 's/'$var_args'/'$credential_var$var_args'/g'`
+        echo $new_qsub_line_with_credential
+
+else
+
+        echo "qsub -v in_queue_credential=1 "$new_qsub_line
+fi
+
+sleep 1
