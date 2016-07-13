@@ -3,11 +3,17 @@
 if [ -z "$1" ]
 then
 printf "\n\n"
-echo "please add a queue argument"
+echo "please add a queue argument or \"all\" for all power5 cpus"
 echo "exiting"
 exit 1
 fi
 
+if [ $1 = all ]
+then
+all_power5_cores=`qmgr -c 'p n @d'|grep ncpu|awk '{sum+=$6}END{print sum}'`
+echo "all power5 cores : "$all_power5_cores
+exit 0 
+fi
 
 q0_nodes=`qmgr -c 'p n @d'|grep -w $1|awk '{print $3}'|paste -s -d' '`
 node_ncpu_sum=0
