@@ -40,6 +40,7 @@ qmgr -c "p q $1"|grep -v '^#'|sed 's/'"$1"'/'"$1"'_0q/g'|sed 's/Priority = 200/P
 #add :
 echo "set queue $1_0q max_queued_res.ncpus = [o:PBS_ALL=$original_q_ncpu_sum]"
 echo "set queue $1_0q queued_jobs_threshold = [o:PBS_ALL = 5]"
+echo "set queue $1_0q from_route_only = True"
 
 printf "\n\n"
 ##################################################################################################################
@@ -92,6 +93,7 @@ echo "################################################## create a 0q copy of the
 printf "\nNew p0q queue setup :\n\n"
 qmgr -c "p q $1"|grep -v '^#'|sed 's/'"$1"'/'"$1"'_p0q/g'|sed 's/Priority = 200/Priority = 100/g'
 #add :
+echo "set queue $1_p0q from_route_only = True"
 echo "set queue $1_p0q queued_jobs_threshold = [o:PBS_ALL = 1]"
 printf "\n\n"
 ###############################################################################################
