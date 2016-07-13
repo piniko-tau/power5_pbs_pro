@@ -1,0 +1,79 @@
+#!/bin/bash -l
+
+#grab ncpu var if available , otherwise set to 1
+
+qsub_line="$*"
+#default job ncpus
+job_ncpus=1
+
+if [[ $qsub_line =~ .*ncpus.* ]] ;then
+	job_ncpus=`echo $qsub_line|sed 's/.*ncpus.*=//g'|awk '{print $1}'`
+	#check lncus syntax
+	if ! [[ $job_ncpus =~ ^[0-9]+$ ]];then 
+		echo "error in ncpus arg , exiting"
+		exit 1
+	fi
+fi
+
+echo 'job ncpus: '$job_ncpus
+
+
+#grab queues_in and check where to put the job 
+for qsub_var in "$@"
+do
+
+
+        if [[ $qsub_var =~ ncpus.*=.*[0-9]+ ]];then
+                job_ncpus=$qsub_var
+                echo $job_ncpus
+        fi
+
+
+	if [ $qsub_var == "adis_in" ];then
+		
+		#check if there's room in the 0q queue
+		i_0q=`echo $qsub_var|sed 's/_.*/_0q/g'`
+		queue_i_0q_ncpu_sum=`count_queue_cores.sh $i_0q|awk '{print $6}'`
+		echo $i_0q " total " $queue_i_0q_ncpu_sum
+		busy_0q_ncpus=`qstat -n -1|grep $i_0q|awk '{ncpu_sum+=$7}END{print ncpu_sum}'`
+		echo "busy " $busy_0q_ncpus
+		let "free_0q_ncus = queue_i_0q_ncpu_sum - busy_0q_ncpus"
+		echo "free 0q "$free_0q_ncus
+
+		#check if there's room in the p0q queue
+                i_p0q=`echo $qsub_var|sed 's/_.*/_p0q/g'`
+                queue_i_p0q_ncpu_sum=`count_queue_cores.sh $i_p0q|awk '{print $6}'`
+                echo $i_p0q " total " $queue_i_p0q_ncpu_sum
+                busy_p0q_ncpus=`qstat -n -1|grep $i_p0q|awk '{ncpu_sum+=$7}END{print ncpu_sum}'`
+                echo "busy " $busy_p0q_ncpus
+                let "free_p0q_ncus = queue_i_p0q_ncpu_sum - busy_p0q_ncpus"
+                echo "free p0q "$free_p0q_ncus
+		
+                i_org_q=`echo $qsub_var|sed 's/_.*//g'`
+		echo "i_org_q "$i_org_q
+
+
+		#route the job to the selected queue		
+                #if both of the above are full send the job to the original queue               
+		if [[ $free_0q_ncus -ge $job_ncpus ]];then
+
+			echo "sent to $i_0q"
+
+		elif [[ $free_p0q_ncus -ge $job_ncpus ]];then
+                            
+			 
+			echo "sent to $i_p0q"			
+		
+		else 
+			echo "sent to original $i_org_q"
+
+		fi
+
+
+			
+	fi
+done
+		
+#qsub -v in_queue_credential=1 "$@"
+
+#sleep 2
