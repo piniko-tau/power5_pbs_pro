@@ -57,15 +57,24 @@ do
                 #if both of the above are full send the job to the original queue               
 		if [[ $free_0q_ncus -ge $job_ncpus ]];then
 
-			echo "sent to $i_0qr"
+			echo "sent to $i_0q""r"
+			new_qsub_line=`echo $qsub_line |sed 's/\-q.*_in/-q '$i_0q'r/g'`
+			echo $new_qsub_line
 
 		elif [[ $free_p0q_ncus -ge $job_ncpus ]];then
                             
 			 
-			echo "sent to $i_p0qr"			
+			echo "sent to $i_p0q""r"			
+                        new_qsub_line=`echo $qsub_line |sed 's/\-q.*_in/-q '$i_p0q'r/g'`
+                        echo $new_qsub_line
+
+
 		
 		else 
 			echo "sent to original $i_org_q"
+                        new_qsub_line=`echo $qsub_line |sed 's/\-q.*_in/-q '$i_org_q'/g'`
+                        echo $new_qsub_line
+
 
 		fi
 
