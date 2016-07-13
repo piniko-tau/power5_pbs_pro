@@ -57,12 +57,12 @@ do
                 #if both of the above are full send the job to the original queue               
 		if [[ $free_0q_ncus -ge $job_ncpus ]];then
 
-			echo "sent to $i_0q"
+			echo "sent to $i_0qr"
 
 		elif [[ $free_p0q_ncus -ge $job_ncpus ]];then
                             
 			 
-			echo "sent to $i_p0q"			
+			echo "sent to $i_p0qr"			
 		
 		else 
 			echo "sent to original $i_org_q"
@@ -76,4 +76,3 @@ done
 		
 #qsub -v in_queue_credential=1 "$@"
 
-#sleep 2

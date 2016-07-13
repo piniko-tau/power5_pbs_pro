@@ -1,14 +1,19 @@
 #!/bin/bash
 #
-#new queue original_in
+#new queue originalQ_in
 #
-#route : original_0q -> original_p0q -> original
+#route : originalQ_0q -> originalQ_p0q -> originalQ
 #
 #this script will create a new queue_in :
 
-#1)first create and populate original_0q (0q copy)
-#2)then create and populate original_p0q (all-0q copy)
-#3)finally create a original_in outing queue 
+#1)first create and populate originalQ_0q (0q copy)
+#2)then create and populate originalQ_p0q (all-0q copy)
+#3)finally create a originalQ_in,originalQ_p0qr,originalQ_0q routing queues
+## originalQ_in - regular_in routing queue
+## originalQ_0qr - 0q -> originalQ
+## originalQ_p0qr - p0q -> originalQ
+# the qsub_in script will send the job to the right place
+
 
 if [ -z "$1" ] 
 then 
@@ -113,17 +118,38 @@ printf "\n\n"
 
 ###########################################################################################
 echo "################# PART 3 #############################################################################"
-echo "######################## routing queue  #############################################################################################"
+echo "######################## Routing queues  #############################################################################################"
 printf "\n\n"
-echo "finally create the routing queue :"
+echo "Create the routing queue $_in:"
 printf "\n\n"
 qmgr -c "p q $1"|grep -v '^#'|sed 's/Execution/Route/g'|sed 's/'"$1"'/'"$1"'_in/g'|grep -v 'default_chunk'
 echo "set queue $1_in route_destinations = $1_0q"
 echo "set queue $1_in route_destinations += $1_p0q"
 echo "set queue $1_in route_destinations += $1"
+echo ""
 echo "repeat if needed : set queue $1_in enabled = True"
 
 printf "\n\n"
+
+echo "Create the routing queue $_0qr:"
+printf "\n\n"
+qmgr -c "p q $1"|grep -v '^#'|sed 's/Execution/Route/g'|sed 's/'"$1"'/'"$1"'_0qr/g'|grep -v 'default_chunk'
+echo "set queue $1_0qr route_destinations = $1_0q"
+echo "set queue $1_0qr route_destinations += $1"
+echo ""
+echo "repeat if needed : set queue $1_0qr enabled = True"
+
+printf "\n\n"
+echo "Create the routing queue $_p0qr:"
+printf "\n\n"
+qmgr -c "p q $1"|grep -v '^#'|sed 's/Execution/Route/g'|sed 's/'"$1"'/'"$1"'_p0qr/g'|grep -v 'default_chunk'
+echo "set queue $1_p0qr route_destinations += $1_p0q"
+echo "set queue $1_p0qr route_destinations += $1"
+echo ""
+echo "repeat if needed : set queue $1_p0qr enabled = True"
+
+printf "\n\n"
+
 
 echo "#######################################################################################################################"
 echo "################################### IN QUEUE CONFIGS END ##############################################################"
@@ -136,6 +162,8 @@ printf "\n\n"
 echo "qmgr -c \"d h check_and_route_$1_in\""
 echo "qmgr -c \"d q $1_0q\""
 echo "qmgr -c \"d q $1_p0q\""
+echo "qmgr -c \"d q $1_0qr\""
+echo "qmgr -c \"d q $1_p0qr\""
 echo "qmgr -c \"d q $1_in\""
 echo "qmgr -c \"p n @d\"|grep "adis_"|sed 's/+/-/g'"
 printf "\n\n"
