@@ -1,8 +1,14 @@
 #!/bin/bash -l
 
-#grab ncpu var if available , otherwise set to 1
-
 qsub_line="$*"
+
+#check if we are tryig to submit to a known _in queue or exit
+if ! [[ $qsub_line =~ \-q.*adis_in ]];then 
+	echo "Can only be used for _in queues , exiting"
+	exit 1
+fi
+
+#grab ncpu var if available , otherwise set to 1
 #default job ncpus
 job_ncpus=1
 
@@ -21,15 +27,9 @@ echo 'job ncpus: '$job_ncpus
 #grab queues_in and check where to put the job 
 for qsub_var in "$@"
 do
+#	echo $qsub_var
 
-
-        if [[ $qsub_var =~ ncpus.*=.*[0-9]+ ]];then
-                job_ncpus=$qsub_var
-                echo $job_ncpus
-        fi
-
-
-	if [ $qsub_var == "adis_in" ];then
+	if [[ $qsub_var =~ .*_in ]];then
 		
 		#check if there's room in the 0q queue
 		i_0q=`echo $qsub_var|sed 's/_.*/_0q/g'`
