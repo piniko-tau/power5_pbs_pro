@@ -82,11 +82,14 @@ printf "\n\n"
 ###############################################################################################
 echo "###################################### add the nodes to the queue #########################################################"
 printf "\n\n Calculating _p0q nodes... \n\n" 
-#tamir-short and nano are off limits for now
+#tamir-short and nano are off limits for nowi
+#this will take all nodes from queues - own nodes. 
 p0q_queue_list=(dieguez inf shokefmem paster gophna shokef amir-express hugemem parallel bigmem short schwartz geos amir-medium sunny phys barkana adis)
+own_nodes_list=`qmgr -c 'p n @d'|grep -w $1|awk '{print $3}'|paste -s -d','|sed 's/,/\\\|/g'`
+
 for queue in ${p0q_queue_list[@]};do
         if [ $queue = "$1" ];then continue;fi
-        connect_queue_2_nodes_check.sh $queue $1_p0q|sed 's/ '$queue' / '$1'_p0q /g'
+        connect_queue_2_nodes_check.sh $queue $1_p0q|sed 's/ '$queue' / '$1'_p0q /g'|grep -v "$own_nodes_list"
 done|grep qmgr|sort -u
 printf "\n\n"
 
@@ -107,7 +110,7 @@ echo "######################## Routing queues  #################################
 printf "\n\n"
 echo "Create the routing queue $_in:"
 printf "\n\n"
-qmgr -c "p q $1"|grep -v '^#'|sed 's/Execution/Route/g'|sed 's/'"$1"'/'"$1"'_in/g'|grep -v 'default_chunk'
+qmgr -c "p q $1"|grep -v '^#'|sed 's/Execution/Route/g'|sed 's/'"$1"'/'"$1"'_in/g'|grep -v 'default_chunk'|grep -v 'Priority'
 echo "set queue $1_in route_destinations = $1_0q"
 echo "set queue $1_in route_destinations += $1_p0q"
 echo "set queue $1_in route_destinations += $1"
@@ -128,7 +131,7 @@ printf "\n\n"
 echo "qmgr -c \"d q $1_0q\""
 echo "qmgr -c \"d q $1_p0q\""
 echo "qmgr -c \"d q $1_in\""
-echo "qmgr -c \"p n @d\"|grep "adis_"|sed 's/+/-/g'"
+echo "qmgr -c \"p n @d\"|grep "$1_"|sed 's/+/-/g'"
 printf "\n\n"
 echo "#################################### END OF DELETE CONFIGS SECTION  #####################################################"
 
