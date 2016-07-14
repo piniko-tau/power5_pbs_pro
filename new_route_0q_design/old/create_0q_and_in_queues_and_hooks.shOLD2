@@ -51,6 +51,7 @@ printf "\nNew 0q queue setup :\n\n"
 qmgr -c "p q $1"|grep -v '^#'|sed 's/'"$1"'/'"$1"'_0q/g'|sed 's/Priority = 200/Priority = 100/g'
 #add :
 echo "set queue $1_0q max_queued_res.ncpus = [o:PBS_ALL=$original_q_ncpu_sum]"
+echo "set queue $1_0q queued_jobs_threshold = [o:PBS_ALL = 1]"
 echo "set queue $1_0q from_route_only = True"
 echo "set queue $1_0q resources_max.cput = 01:00:00"
 
@@ -65,6 +66,36 @@ printf "\n\n"
 q0_nodes=`qmgr -c 'p n @d'|grep -w $1|awk '{print "\""$3"\""}'|paste -s -d','`
 
 ########################################################################################3
+echo "#################################################### then create a 0q hook for this queue"
+printf "\n\n"
+echo "qmgr -c \"create hook check_and_route_$1_in event=\"queuejob\"\""
+printf "\n\tHook File check_and_route_$1_in contents:\n\n"
+printf "\nPut this is /var/spool/PBS/hooks/check_and_route_$1_in.py\n"
+cat <<EOF
+import pbs
+import sys
+#qmgr -c 'create hook check_and_route_$1_in event="queuejob"'
+#qmgr -c 'import hook check_and_route_$1_in application/x-python default /var/spool/PBS/hooks/check_and_route_$1_in.py' 
+#qmgr -c 'd h check_and_route_$1_in'
+try:
+	e = pbs.event()	
+	if e.job.queue:
+		if (e.job.queue.name in ["$1_in"]):
+			if (e.job.Variable_List["in_queue_credential"] != "1"):
+		        	e.reject("Error, Make sure you use --> qsub_in <-- command to submit to this queue!")
+
+except SystemExit:
+	pass
+except :
+	e.reject("Error, Make sure you use --> qsub_in <-- command to submit to this queue!")
+EOF
+printf "\n\n"
+
+echo "qmgr -c \"import hook check_and_route_$1_in application/x-python default /var/spool/PBS/hooks/check_and_route_$1_in.py\""
+printf "\n\n"
+
+###########################################################################################
+
 echo "################################# PART 2 ###################################################"
 
 #then create a original_p0q of everything else 
@@ -76,6 +107,7 @@ printf "\nNew p0q queue setup :\n\n"
 qmgr -c "p q $1"|grep -v '^#'|sed 's/'"$1"'/'"$1"'_p0q/g'|sed 's/Priority = 200/Priority = 100/g'
 #add :
 echo "set queue $1_p0q from_route_only = True"
+echo "set queue $1_p0q queued_jobs_threshold = [o:PBS_ALL = 1]"
 echo "set queue $1_p0q resources_max.cput = 01:00:00"
 
 printf "\n\n"
@@ -123,8 +155,19 @@ echo "##########################################################################
 
 
 echo "#######################################################################################################################"
+echo "################################### Qsub_in design :  ##############################################################"
+
+echo "qsub_in location : "
+echo ""
+which qsub_in
+printf "\n\n"
+
+cat /root/power5_pbspro_configs_git/new_route_0q_design/qsub_in
+
+printf "\n\n"
 echo "#################################### HOW TO DELETE THESE CONFIGS : #####################################################"
 printf "\n\n"
+echo "qmgr -c \"d h check_and_route_$1_in\""
 echo "qmgr -c \"d q $1_0q\""
 echo "qmgr -c \"d q $1_p0q\""
 echo "qmgr -c \"d q $1_in\""
