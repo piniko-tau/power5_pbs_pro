@@ -1,0 +1,201 @@
+create queue nano_0q
+set queue nano_0q queue_type = Execution
+set queue nano_0q Priority = 100
+set queue nano_0q acl_user_enable = True
+set queue nano_0q acl_users = alexa9
+set queue nano_0q acl_users += coheneya1
+set queue nano_0q acl_users += dalon
+set queue nano_0q acl_users += danakrep
+set queue nano_0q acl_users += danny
+set queue nano_0q acl_users += davidem
+set queue nano_0q acl_users += dvory
+set queue nano_0q acl_users += einat
+set queue nano_0q acl_users += giladshaham
+set queue nano_0q acl_users += guzeliez
+set queue nano_0q acl_users += iddoweiner
+set queue nano_0q acl_users += inbaloz
+set queue nano_0q acl_users += itaileve
+set queue nano_0q acl_users += kirilll1
+set queue nano_0q acl_users += michail
+set queue nano_0q acl_users += n5
+set queue nano_0q acl_users += odedhod
+set queue nano_0q acl_users += omershaked2
+set queue nano_0q acl_users += oriahmio
+set queue nano_0q acl_users += oscarfajardo
+set queue nano_0q acl_users += piniko
+set queue nano_0q acl_users += renanaco
+set queue nano_0q acl_users += shimshi
+set queue nano_0q acl_users += tamarzel
+set queue nano_0q acl_users += tamirtestgrp
+set queue nano_0q acl_users += zoharzaf
+set queue nano_0q acl_users += zurhadas
+set queue nano_0q acl_users += zurhadas2
+set queue nano_0q resources_max.walltime = 2400:00:00
+set queue nano_0q resources_default.mem = 200mb
+set queue nano_0q resources_default.ncpus = 1
+set queue nano_0q resources_default.pmem = 200mb
+set queue nano_0q resources_default.pvmem = 200mb
+set queue nano_0q resources_default.vmem = 200mb
+set queue nano_0q enabled = True
+set queue nano_0q started = True
+set queue nano_0q max_queued_res.ncpus = [o:PBS_ALL=368]
+set queue nano_0q from_route_only = True
+
+
+	qmgr -c "set queue nano_0q default_chunk.Qlist = nano_0q"
+
+Please set this for nano_0q nodes :
+
+	qmgr -c "set node compute-0-90 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-81 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-82 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-83 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-84 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-85 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-80 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-87 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-91 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-86 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-92 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-93 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-94 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-95 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-97 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-98 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-101 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-102 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-89 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-96 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-103 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-99 resources_available.Qlist += nano_0q" 
+	qmgr -c "set node compute-0-100 resources_available.Qlist += nano_0q" 
+
+
+
+
+
+
+
+create queue nano_p0q
+set queue nano_p0q queue_type = Execution
+set queue nano_p0q Priority = 100
+set queue nano_p0q acl_user_enable = True
+set queue nano_p0q acl_users = alexa9
+set queue nano_p0q acl_users += coheneya1
+set queue nano_p0q acl_users += dalon
+set queue nano_p0q acl_users += danakrep
+set queue nano_p0q acl_users += danny
+set queue nano_p0q acl_users += davidem
+set queue nano_p0q acl_users += dvory
+set queue nano_p0q acl_users += einat
+set queue nano_p0q acl_users += giladshaham
+set queue nano_p0q acl_users += guzeliez
+set queue nano_p0q acl_users += iddoweiner
+set queue nano_p0q acl_users += inbaloz
+set queue nano_p0q acl_users += itaileve
+set queue nano_p0q acl_users += kirilll1
+set queue nano_p0q acl_users += michail
+set queue nano_p0q acl_users += n5
+set queue nano_p0q acl_users += odedhod
+set queue nano_p0q acl_users += omershaked2
+set queue nano_p0q acl_users += oriahmio
+set queue nano_p0q acl_users += oscarfajardo
+set queue nano_p0q acl_users += piniko
+set queue nano_p0q acl_users += renanaco
+set queue nano_p0q acl_users += shimshi
+set queue nano_p0q acl_users += tamarzel
+set queue nano_p0q acl_users += tamirtestgrp
+set queue nano_p0q acl_users += zoharzaf
+set queue nano_p0q acl_users += zurhadas
+set queue nano_p0q acl_users += zurhadas2
+set queue nano_p0q resources_max.walltime = 2400:00:00
+set queue nano_p0q resources_default.mem = 200mb
+set queue nano_p0q resources_default.ncpus = 1
+set queue nano_p0q resources_default.pmem = 200mb
+set queue nano_p0q resources_default.pvmem = 200mb
+set queue nano_p0q resources_default.vmem = 200mb
+set queue nano_p0q enabled = True
+set queue nano_p0q started = True
+set queue nano_p0q from_route_only = True
+set queue nano_p0q resources_max.cput = 01:00:00
+
+	qmgr -c "set node compute-0-12 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-158 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-159 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-160 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-161 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-162 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-164.power5 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-165.power5 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-166.power5 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-167.power5 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-168 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-169 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-174.power5 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-20 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-21 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-22 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-45 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-46 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-47 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-48 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-49 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-50 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-51 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-53 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-56 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-58 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-62 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-64 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-65 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set node compute-0-66 resources_available.Qlist += nano_p0q" 
+	qmgr -c "set queue nano_p0q default_chunk.Qlist = nano_p0q"
+
+set queue nano_p0q max_queued_res.ncpus = [o:PBS_ALL=444]
+
+
+create queue nano_in
+set queue nano_in queue_type = Route
+set queue nano_in acl_user_enable = True
+set queue nano_in acl_users = alexa9
+set queue nano_in acl_users += coheneya1
+set queue nano_in acl_users += dalon
+set queue nano_in acl_users += danakrep
+set queue nano_in acl_users += danny
+set queue nano_in acl_users += davidem
+set queue nano_in acl_users += dvory
+set queue nano_in acl_users += einat
+set queue nano_in acl_users += giladshaham
+set queue nano_in acl_users += guzeliez
+set queue nano_in acl_users += iddoweiner
+set queue nano_in acl_users += inbaloz
+set queue nano_in acl_users += itaileve
+set queue nano_in acl_users += kirilll1
+set queue nano_in acl_users += michail
+set queue nano_in acl_users += n5
+set queue nano_in acl_users += odedhod
+set queue nano_in acl_users += omershaked2
+set queue nano_in acl_users += oriahmio
+set queue nano_in acl_users += oscarfajardo
+set queue nano_in acl_users += piniko
+set queue nano_in acl_users += renanaco
+set queue nano_in acl_users += shimshi
+set queue nano_in acl_users += tamarzel
+set queue nano_in acl_users += tamirtestgrp
+set queue nano_in acl_users += zoharzaf
+set queue nano_in acl_users += zurhadas
+set queue nano_in acl_users += zurhadas2
+set queue nano_in resources_max.walltime = 2400:00:00
+set queue nano_in resources_default.mem = 200mb
+set queue nano_in resources_default.ncpus = 1
+set queue nano_in resources_default.pmem = 200mb
+set queue nano_in resources_default.pvmem = 200mb
+set queue nano_in resources_default.vmem = 200mb
+set queue nano_in resources_max.cput = 01:00:00
+set queue nano_in enabled = True
+set queue nano_in started = True
+set queue nano_in route_destinations = nano_0q
+set queue nano_in route_destinations += nano_p0q
+set queue nano_in route_destinations += nano4
+
+

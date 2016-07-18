@@ -44,7 +44,11 @@ echo "##########################################################################
 echo "########################### PART 1 #####################################"
 
 ###################################### check total number of nodes for limit ##################
+if [ "$1" = nano4 ];then
+original_q_ncpu_sum=`count_queue_cores.sh nano|awk '{print $6}'`
+else
 original_q_ncpu_sum=`count_queue_cores.sh $1|awk '{print $6}'`
+fi
 
 ################################################## first create a 0q copy of the original queue
 printf "\nNew 0q queue setup :\n\n"
@@ -52,7 +56,6 @@ qmgr -c "p q $1"|grep -v '^#'|sed 's/'"$1"'/'"$1"'_0q/g'|sed 's/Priority = 200/P
 #add :
 echo "set queue $1_0q max_queued_res.ncpus = [o:PBS_ALL=$original_q_ncpu_sum]"
 echo "set queue $1_0q from_route_only = True"
-echo "set queue $1_0q resources_max.cput = 01:00:00"
 
 printf "\n\n"
 ##################################################################################################################
@@ -62,7 +65,7 @@ printf "\n\n"
 #####################################################################################33
 #calculate the queue_0q nodes from the original:
 
-q0_nodes=`qmgr -c 'p n @d'|grep -w $1|awk '{print "\""$3"\""}'|paste -s -d','`
+q0_nodes=`qmgr -c 'p n @d'|grep ' $1'|awk '{print "\""$3"\""}'|paste -s -d','`
 
 ########################################################################################3
 echo "################################# PART 2 ###################################################"
@@ -82,14 +85,26 @@ printf "\n\n"
 ###############################################################################################
 echo "###################################### add the nodes to the queue #########################################################"
 printf "\n\n Calculating _p0q nodes... \n\n" 
-#tamir-short and nano are off limits for nowi
+# nano are off limits for nowi
 #this will take all nodes from queues - own nodes. 
-p0q_queue_list=(dieguez inf shokefmem paster gophna shokef amir-express hugemem parallel bigmem short schwartz geos amir-medium sunny phys barkana adis)
-own_nodes_list=`qmgr -c 'p n @d'|grep -w $1|awk '{print $3}'|paste -s -d','|sed 's/,/\\\|/g'`
+p0q_queue_list=( tamir-short dieguez inf shokefmem paster gophna shokef amir-express hugemem parallel bigmem short schwartz geos amir-medium sunny phys barkana adis)
+
+if [ "$1" = nano4 ];then
+own_nodes_list=`qmgr -c 'p n @d'|grep -w nano|awk '{print $3}'|paste -s -d','|sed 's/,/\\\|/g'`
+else
+own_nodes_list=`qmgr -c 'p n @d'|grep ' $1'|awk '{print $3}'|paste -s -d','|sed 's/,/\\\|/g'`
+fi
 
 for queue in ${p0q_queue_list[@]};do
         if [ $queue = "$1" ];then continue;fi
-        connect_queue_2_nodes_check.sh $queue $1_p0q|sed 's/ '$queue' / '$1'_p0q /g'|grep -v "$own_nodes_list"
+
+        	if [ "$1" = nano4 ];then 
+		connect_queue_2_nodes_check.sh $queue nano_p0q|sed 's/ '$queue' / nano_p0q /g'|grep -v "$own_nodes_list"
+
+		else 
+		connect_queue_2_nodes_check.sh $queue $1_p0q|sed 's/ '$queue' / '$1'_p0q /g'|grep -v "$own_nodes_list"
+		fi
+
 done|grep qmgr|sort -u
 printf "\n\n"
 
@@ -100,6 +115,14 @@ printf "\n\n"
 #############################################################################################################################
 echo "############################# add 0q run limit to the queue  ########################################################"
 p0q_ncpu_sum=`count_queue_cores.sh $1_p0q|awk '{print $6}'`
+
+if [ "$1" = nano4 ];then
+p0q_ncpu_sum=`count_queue_cores.sh nano_p0q|awk '{print $6}'`
+else
+p0q_ncpu_sum=`count_queue_cores.sh $1_p0q|awk '{print $6}'`
+fi
+
+
 echo "add this limit to the p0q : "
 echo "set queue $1_p0q max_queued_res.ncpus = [o:PBS_ALL=$p0q_ncpu_sum]"
 printf "\n\n"
@@ -110,7 +133,7 @@ echo "######################## Routing queues  #################################
 printf "\n\n"
 echo "Create the routing queue $_in:"
 printf "\n\n"
-qmgr -c "p q $1"|grep -v '^#'|sed 's/Execution/Route/g'|sed 's/'"$1"'/'"$1"'_in/g'|grep -v 'default_chunk'|grep -v 'Priority'
+qmgr -c "p q $1"|grep -v '^#'|sed 's/Execution/Route/g'|sed 's/'"$1"'/'"$1"'_in/g'|grep -v 'default_chunk'|grep -v 'Priority'|grep -v 'max_queued_res'|grep -v 'from_route_only'
 echo "set queue $1_in route_destinations = $1_0q"
 echo "set queue $1_in route_destinations += $1_p0q"
 echo "set queue $1_in route_destinations += $1"

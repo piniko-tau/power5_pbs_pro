@@ -15,7 +15,7 @@ echo "all power5 cores : "$all_power5_cores
 exit 0 
 fi
 
-q0_nodes=`qmgr -c 'p n @d'|grep -w $1|awk '{print $3}'|paste -s -d' '`
+q0_nodes=`qmgr -c 'p n @d'|grep " $1"|awk '{print $3}'|paste -s -d' '`
 node_ncpu_sum=0
 for qnode in ${q0_nodes[@]};do 
 node_ncpu=`qmgr -c "p n $qnode"|grep ncpus|awk '{print $6}'` 
