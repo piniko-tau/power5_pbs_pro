@@ -1,0 +1,94 @@
+d q tamirs
+
+create queue tamirs
+set queue tamirs queue_type = Execution
+set queue tamirs Priority = 200
+set queue tamirs acl_users = alexa9
+set queue tamirs acl_users += coheneya1
+set queue tamirs acl_users += dalon
+set queue tamirs acl_users += danny
+set queue tamirs acl_users += einat
+set queue tamirs acl_users += giladshaham
+set queue tamirs acl_users += guzeliez
+set queue tamirs acl_users += iddoweiner
+set queue tamirs acl_users += kirilll1
+set queue tamirs acl_users += mayagalili
+set queue tamirs acl_users += michail
+set queue tamirs acl_users += n5
+set queue tamirs acl_users += omershaked2
+set queue tamirs acl_users += oriahmio
+set queue tamirs acl_users += piniko
+set queue tamirs acl_users += renanaco
+set queue tamirs acl_users += shimshi
+set queue tamirs acl_users += tamirtestgrp
+set queue tamirs acl_users += zoharzaf
+set queue tamirs acl_users += zurhadas
+set queue tamirs acl_users += zurhadas2
+set queue tamirs from_route_only = True
+set queue tamirs resources_max.walltime = 2400:00:00
+set queue tamirs resources_default.mem = 200mb
+set queue tamirs resources_default.ncpus = 1
+set queue tamirs resources_default.pmem = 200mb
+set queue tamirs resources_default.pvmem = 200mb
+set queue tamirs resources_default.vmem = 200mb
+set queue tamirs default_chunk.Qlist = tamirs
+set queue tamirs enabled = True
+set queue tamirs started = True
+
+
+set queue tamirs1 route_destinations = tamirs
+
+
+
+set node compute-0-168.power5 resources_available.Qlist += tamirs
+set node compute-0-169.power5 resources_available.Qlist += tamirs
+set node compute-0-168 resources_available.Qlist += tamirs
+set node compute-0-165.power5 resources_available.Qlist += tamirs
+set node compute-0-169 resources_available.Qlist += tamirs
+set node compute-0-164.power5 resources_available.Qlist += tamirs
+set node compute-0-167.power5 resources_available.Qlist += tamirs
+set node compute-0-166.power5 resources_available.Qlist += tamirs
+set node compute-0-90 resources_available.Qlist += tamirs
+set node compute-0-81 resources_available.Qlist += tamirs
+set node compute-0-45 resources_available.Qlist += tamirs
+set node compute-0-82 resources_available.Qlist += tamirs
+set node compute-0-83 resources_available.Qlist += tamirs
+set node compute-0-49 resources_available.Qlist += tamirs
+set node compute-0-84 resources_available.Qlist += tamirs
+set node compute-0-85 resources_available.Qlist += tamirs
+set node compute-0-174.power5 resources_available.Qlist += tamirs
+set node compute-0-80 resources_available.Qlist += tamirs
+set node compute-0-87 resources_available.Qlist += tamirs
+set node compute-0-46 resources_available.Qlist += tamirs
+set node compute-0-47 resources_available.Qlist += tamirs
+set node compute-0-53 resources_available.Qlist += tamirs
+set node compute-0-56 resources_available.Qlist += tamirs
+set node compute-0-91 resources_available.Qlist += tamirs
+set node compute-0-86 resources_available.Qlist += tamirs
+set node compute-0-92 resources_available.Qlist += tamirs
+set node compute-0-93 resources_available.Qlist += tamirs
+set node compute-0-94 resources_available.Qlist += tamirs
+set node compute-0-95 resources_available.Qlist += tamirs
+set node compute-0-50 resources_available.Qlist += tamirs
+set node compute-0-51 resources_available.Qlist += tamirs
+set node compute-0-58 resources_available.Qlist += tamirs
+set node compute-0-97 resources_available.Qlist += tamirs
+set node compute-0-98 resources_available.Qlist += tamirs
+set node compute-0-101 resources_available.Qlist += tamirs
+set node compute-0-102 resources_available.Qlist += tamirs
+set node compute-0-89 resources_available.Qlist += tamirs
+set node compute-0-96 resources_available.Qlist += tamirs
+set node compute-0-103 resources_available.Qlist += tamirs
+set node compute-0-99 resources_available.Qlist += tamirs
+set node compute-0-64 resources_available.Qlist += tamirs
+set node compute-0-100 resources_available.Qlist += tamirs
+set node compute-0-12 resources_available.Qlist += tamirs
+set node compute-0-158 resources_available.Qlist += tamirs
+set node compute-0-158 resources_available.Qlist += tamirs
+set node compute-0-158 resources_available.Qlist += tamirs
+set node compute-0-160 resources_available.Qlist += tamirs
+set node compute-0-161 resources_available.Qlist += tamirs
+set node compute-0-159 resources_available.Qlist += tamirs
+set node compute-0-162 resources_available.Qlist += tamirs
+set node compute-0-48 resources_available.Qlist += tamirs
+
