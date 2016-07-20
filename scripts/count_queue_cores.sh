@@ -15,6 +15,17 @@ echo "all power5 cores : "$all_power5_cores
 exit 0 
 fi
 
+if [[ "$1" =~ nano[1-9] ]];then
+q0_nodes=`qmgr -c 'p n @d'|grep -w " nano"|awk '{print $3}'|paste -s -d' '`
+node_ncpu_sum=0
+for qnode in ${q0_nodes[@]};do 
+node_ncpu=`qmgr -c "p n $qnode"|grep ncpus|awk '{print $6}'` 
+let "node_ncpu_sum = node_ncpu + node_ncpu_sum"
+done
+echo "cores in nano queue : "$node_ncpu_sum
+exit 0
+fi
+
 q0_nodes=`qmgr -c 'p n @d'|grep -w " $1"|awk '{print $3}'|paste -s -d' '`
 node_ncpu_sum=0
 for qnode in ${q0_nodes[@]};do 

@@ -1,7 +1,14 @@
 printf "\nTime: `date +%T-%D`\n"
 printf "\nserver: power5.tau.ac.il\n\n Active queues:\n\n`qstat -q|awk '{if (($6 > 0) || ($7 > 0)) print $0}'`\n"
-printf "\n";count_queue_cores.sh nano
-printf "\nPer User Running: \n\n"
+printf "\nPer queue core usage :\n"
+for q in `qstat -q|awk '{if ($6 > 0)  print $0}'|grep -v Queue|awk '{print $1}'`
+do
+Q=$q
+if [[ "$q" = "tamir-short" ]];then Q=tamir-sh;fi
+printf "\n`qstat -n -1|grep -w R |grep $Q |awk '{s+=$7}END{print $3" usage : "s}'`/`count_queue_cores.sh $q|awk '{print $6}'`\n"   
+done
+echo ""
+printf "\nPer user Core usage: \n\n"
 for u in `qstat -n -1|grep -w R |awk '{print $2}'|grep -v Req|grep -v ID|grep [a-z]|sort -u`;do printf "$u\t";qstat -n -1 |grep -w R|grep $u |awk '{s+=$7}END{print s" cores"}';done|sort -n -r -k2 
 printf "\nPer User Queued: \n\n"
 qstat -n -1 |grep ' Q '|cut -d" " -f2|sort |uniq -c 
