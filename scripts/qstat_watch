@@ -1,8 +1,6 @@
-qstat -q>/var/www/html/wordpress/queue_stats
-printf "\nPer User Running\n\n">>/var/www/html/wordpress/queue_stats
-qstat -n -1 |grep ' R '|cut -d" " -f2|sort |uniq -c>>/var/www/html/wordpress/queue_stats
-printf "\nPer User Queued\n\n">>/var/www/html/wordpress/queue_stats
-qstat -n -1 |grep ' Q '|cut -d" " -f2|sort |uniq -c >>/var/www/html/wordpress/queue_stats
-printf "\n*Faishare Stars* :\n">>/var/www/html/wordpress/queue_stats
-echo "">>/var/www/html/wordpress/queue_stats
-pbsfs |grep -v 'Usage: 0\|Fairshare\|TREEROOT\|unknown'|sed 's/ \+/#/g'|sed 's/#:#/:#/g'|cut -d"#" -f1,9|sed 's/#/ /g'|sort -k 2 -r -n>>/var/www/html/wordpress/queue_stats
+#!/bin/bash -l
+while true
+do 
+/root/power5_pbspro_configs_git/scripts/qstat_report > /var/www/html/wordpress/queue_stats
+sleep 2m
+done

@@ -1,3 +1,4 @@
+d q tamirs
 create queue tamirs
 set queue tamirs queue_type = Route
 set queue tamirs acl_users = alexa9
@@ -28,4 +29,25 @@ set queue tamirs route_destinations += hugemem
 set queue tamirs route_destinations += inf
 set queue tamirs enabled = True
 set queue tamirs started = True
+
+
+d q short
+create queue short
+set queue short queue_type = Execution
+set queue short Priority = 50
+set queue short from_route_only = True
+set queue short resources_max.cput = 24:00:00
+set queue short resources_max.mem = 1800mb
+set queue short resources_max.ncpus = 1
+set queue short resources_max.pmem = 1800mb
+set queue short resources_max.pvmem = 3300mb
+set queue short resources_max.vmem = 3300mb
+set queue short resources_max.walltime = 60:00:00
+set queue short resources_default.cput = 24:00:00
+set queue short resources_default.ncpus = 1
+set queue short resources_default.pmem = 100mb
+set queue short resources_default.pvmem = 200mb
+set queue short default_chunk.Qlist = short
+set queue short enabled = True
+set queue short started = True
 

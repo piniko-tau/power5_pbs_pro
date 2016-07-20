@@ -1,0 +1,1 @@
+qstat -n -1|awk {print }|grep -v Req|grep -v ID|grep [a-z]|sort -u
