@@ -1,4 +1,4 @@
-printf "\nTime: `date +%T-%D`\n"
+printf "\nReport Time: `date +%T-%D`\n"
 printf "\nserver: power5.tau.ac.il\n\n Active queues:\n\n`qstat -q|awk '{if (($6 > 0) || ($7 > 0)) print $0}'`\n"
 printf "\nPer queue core usage :\n"
 for q in `qstat -q|awk '{if ($6 > 0)  print $0}'|grep -v Queue|awk '{print $1}'`
