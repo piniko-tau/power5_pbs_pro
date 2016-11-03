@@ -1,0 +1,20 @@
+#!/bin/bash -l
+while true
+do	
+	let tamirsh_queued=`qstat -q |grep tamir-sh|awk '{print $7}'`
+
+	if [[ $tamirsh_queued > 120 ]];then 
+	exit 0
+	fi
+
+	let tamirsh_njobs=`qstat -q |grep tamir-sh|awk '{print $6}'`
+	maxt=120
+	
+	let "t_avail = maxt - tamirsh_njobs"
+	
+	if [[ $t_avail > 0 ]];then
+	qselect -q nano4 -s Q|head -n $t_avail | xargs qmove tamir-short
+	fi
+
+sleep 1m
+done

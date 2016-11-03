@@ -1,0 +1,2 @@
+*/15 * * * * /opt/pbs/shares/handle_proportions.py
+

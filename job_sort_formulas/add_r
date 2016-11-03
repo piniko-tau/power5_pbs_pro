@@ -1,0 +1,4 @@
+Qmgr: create resource current_user_share type=float
+Qmgr: create resource desired_user_share type=float
+Qmgr: create resource current_dept_share type=float
+Qmgr: create resource desired_dept_share type=float

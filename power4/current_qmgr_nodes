@@ -1,75 +1,5 @@
 #
 # Create nodes and set their properties.
-#
-#
-# Create and define node compute-0-45.power5
-#
-create node compute-0-45.power5
-set node compute-0-45.power5 state = Stale
-set node compute-0-45.power5 resources_available.arch = linux
-set node compute-0-45.power5 resources_available.host = compute-0-45
-set node compute-0-45.power5 resources_available.mem = 102399996kb
-set node compute-0-45.power5 resources_available.ncpus = 12
-set node compute-0-45.power5 resources_available.vnode = compute-0-45.power5
-set node compute-0-45.power5 resv_enable = True
-set node compute-0-45.power5 sharing = default_shared
-#
-# Create and define node researcher1.power5
-#
-create node researcher1.power5 Mom=researcher1.local
-set node researcher1.power5 resources_available.arch = linux
-set node researcher1.power5 resources_available.host = researcher1
-set node researcher1.power5 resources_available.mem = 3531032kb
-set node researcher1.power5 resources_available.ncpus = 12
-set node researcher1.power5 resources_available.vnode = researcher1.power5
-set node researcher1.power5 queue = azure1
-set node researcher1.power5 comment = "node down: communication closed"
-set node researcher1.power5 resv_enable = True
-set node researcher1.power5 sharing = default_shared
-#
-# Create and define node researcher1.local
-#
-create node researcher1.local
-set node researcher1.local resources_available.arch = linux
-set node researcher1.local resources_available.host = researcher1
-set node researcher1.local resources_available.mem = 3531032kb
-set node researcher1.local resources_available.ncpus = 12
-set node researcher1.local resources_available.vnode = researcher1.local
-set node researcher1.local queue = azure1
-set node researcher1.local comment = "node down: communication closed"
-set node researcher1.local resv_enable = True
-set node researcher1.local sharing = default_shared
-#
-# Create and define node compute-0-168.power5
-#
-create node compute-0-168.power5 Mom=compute-0-168
-set node compute-0-168.power5 state = Stale
-set node compute-0-168.power5 resources_available.arch = linux
-set node compute-0-168.power5 resources_available.host = compute-0-168
-set node compute-0-168.power5 resources_available.mem = 198381628kb
-set node compute-0-168.power5 resources_available.ncpus = 24
-set node compute-0-168.power5 resources_available.Qlist = nano_0q
-set node compute-0-168.power5 resources_available.Qlist += tamirs
-set node compute-0-168.power5 resources_available.Qlist += nano
-set node compute-0-168.power5 resources_available.vnode = compute-0-168.power5
-set node compute-0-168.power5 resv_enable = True
-set node compute-0-168.power5 sharing = default_shared
-#
-# Create and define node compute-0-169.power5
-#
-create node compute-0-169.power5 Mom=compute-0-169
-set node compute-0-169.power5 state = Stale
-set node compute-0-169.power5 resources_available.arch = linux
-set node compute-0-169.power5 resources_available.host = compute-0-169
-set node compute-0-169.power5 resources_available.mem = 198381628kb
-set node compute-0-169.power5 resources_available.ncpus = 24
-set node compute-0-169.power5 resources_available.Qlist = nano_0q
-set node compute-0-169.power5 resources_available.Qlist += tamirs
-set node compute-0-169.power5 resources_available.Qlist += nano
-set node compute-0-169.power5 resources_available.vnode = compute-0-169.power5
-set node compute-0-169.power5 resv_enable = True
-set node compute-0-169.power5 sharing = default_shared
-#
 # Create and define node compute-0-168
 #
 create node compute-0-168
@@ -853,7 +783,6 @@ set node compute-0-159 resources_available.Qlist += nano_0q
 set node compute-0-159 resources_available.Qlist += tamirs
 set node compute-0-159 resources_available.Qlist += nano
 set node compute-0-159 resources_available.vnode = compute-0-159
-set node compute-0-159 comment = "node down: communication closed"
 set node compute-0-159 resv_enable = True
 set node compute-0-159 sharing = default_shared
 #

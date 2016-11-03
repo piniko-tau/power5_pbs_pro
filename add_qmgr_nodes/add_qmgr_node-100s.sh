@@ -1,0 +1,8 @@
+qmgr -c "create node compute-0-$1 Mom=compute-0-$1"
+qmgr -c "set node compute-0-$1 resources_available.arch = linux"
+qmgr -c "set node compute-0-$1 resources_available.host = compute-0-$1"
+qmgr -c "set node compute-0-$1 resources_available.mem = 198381628kb"
+qmgr -c "set node compute-0-$1 resources_available.ncpus = 24"
+qmgr -c "set node compute-0-$1 resources_available.vnode = compute-0-$1"
+qmgr -c "set node compute-0-$1 resv_enable = True"
+qmgr -c "set node compute-0-$1 sharing = default_shared"

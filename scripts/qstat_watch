@@ -1,8 +1,5 @@
 #!/bin/bash -l
 alias cp='cp'
-while true
-do 
 /root/power5_pbspro_configs_git/scripts/qstat_report > /var/www/html/wordpress/queue_stats_source
-cp -f /var/www/html/wordpress/queue_stats_source /var/www/html/wordpress/queue_stats
-sleep 2m
-done
+sleep 5
+/usr/local/bin/txt2html /var/www/html/wordpress/queue_stats_source > /var/www/html/wordpress/queue_stats.html

@@ -9,7 +9,7 @@ printf "\n`qstat -n -1|grep -w R |grep $Q |awk '{s+=$7}END{print $3" usage : "s}
 done
 echo ""
 printf "\nPer user Core usage: \n\n"
-for u in `qstat -n -1|grep -w R |awk '{print $2}'|grep -v Req|grep -v ID|grep [a-z]|sort -u`;do printf "$u\t";qstat -n -1 |grep -w R|grep $u |awk '{s+=$7}END{print s" cores"}';done|sort -n -r -k2 
+for u in `qstat -n -1|grep -w R |awk '{print $2}'|grep -v Req|grep -v ID|grep -e '[a-z]'|sort -u`;do printf "$u\t";qstat -n -1 |grep -w R|grep $u |awk '{s+=$7}END{print s" cores"}';done|sort -n -r -k2 
 printf "\nPer User Queued: \n\n"
 qstat -n -1 |grep ' Q '|cut -d" " -f2|sort |uniq -c 
 printf "\n*Faishare Stars* :\n"
